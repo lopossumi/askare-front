@@ -1,19 +1,26 @@
 import React from 'react'
 import { Container } from 'semantic-ui-react'
-import { Button, Icon, Link } from 'semantic-ui-react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Icon, Segment, Divider } from 'semantic-ui-react'
+import { BrowserRouter as Router } from 'react-router-dom'
+//import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
+import LoginForm from './components/LoginForm'
+import CreateAccount from './components/CreateAccount'
 
 const App = () => (
     <Router>
-    <Container>
-        <h1>Askare</h1>
-        <Button color='green'>Create account</Button>
-        <Button color='blue'>Login</Button>
-        <a href='https://github.com/lopossumi/askareact'><Button color='purple'> {/*Github purple is #6e5494 */}
-        <Icon name='github' /> Source on GitHub
-      </Button></a>
-    </Container>
+        <Container>
+            <Segment raised padded>
+                <h1><Icon name='list' />askare</h1>
+                <p>Revolutionizing to-do lists. Join today!</p>
+                <CreateAccount />
+            </Segment>
+
+            <LoginForm />
+
+            <Divider />
+            &copy; Mikko Loponen 2018. <a href='https://github.com/lopossumi/askareact'>View source on GitHub.</a>
+        </Container>
     </Router>
 )
-  
+
 export default App
