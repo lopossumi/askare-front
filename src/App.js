@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import LoginForm from './components/LoginForm'
 import CreateAccount from './components/CreateAccount'
 import TaskDetails from './components/TaskDetails'
+import MainView from './components/MainView'
 
 import { connect } from 'react-redux'
 import { initialize } from './reducers/taskListReducer'
@@ -30,7 +31,7 @@ class App extends React.Component {
             <Container>
                 <Router>
                     <div>
-                        <Route exact path='/' render={() =>
+                        <Route path='/login' render={() =>
                             <Container>
                                 <Segment raised padded>
                                     <h1><Icon name='list' />askare</h1>
@@ -41,18 +42,8 @@ class App extends React.Component {
                             </Container>} />
 
 
-                        <Route path='/tasklists' render={() =>
-                            <Container>
-                            {this.props.taskLists && this.props.taskLists.map(taskList=> 
-                            <Segment>
-                                <Label attached='top'>{taskList.title}</Label>
-                                {taskList.tasks.map(item =>
-                                    <TaskDetails
-                                        key={item.id}
-                                        task={item}
-                                color='blue' />)}
-                            </Segment>)}
-                            </Container>
+                        <Route exact path='/' render={() =>
+                            <MainView taskLists={this.props.taskLists} />
                         } />
                     </div>
                 </Router>
