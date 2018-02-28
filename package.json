@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/lopossumi/askareact#readme",
     "dependencies": {
+        "babel-polyfill": "^6.26.0",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
         "react-markdown": "^3.2.2",

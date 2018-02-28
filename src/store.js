@@ -1,17 +1,16 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 // import notificationReducer from './reducers/notificationReducer'
 // import filterReducer from './reducers/filterReducer'
-import taskReducer from './reducers/taskReducer'
+import taskListReducer from './reducers/taskListReducer'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
-// const reducer = combineReducers({
-//   notifications: notificationReducer,
-//   filter: filterReducer
-// })
+const reducer = combineReducers({
+  taskLists: taskListReducer
+})
 
 const store = createStore(
-    taskReducer,
+    reducer,
     composeWithDevTools(
         applyMiddleware(thunk)
     )

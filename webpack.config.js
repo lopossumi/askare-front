@@ -1,7 +1,7 @@
 const path = require('path')
 
 const config = {
-    entry: './src/index.js',
+    entry: ['babel-polyfill', './src/index.js'],
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js'
@@ -9,7 +9,8 @@ const config = {
     devServer: {
         contentBase: path.resolve(__dirname, 'build'),
         compress: true,
-        port: 3000
+        port: 3000,
+        historyApiFallback: true,
     },
     module: {
         rules: [
@@ -26,7 +27,7 @@ const config = {
                 loaders: ['style-loader', 'css-loader']
             }
         ]
-    }
-
+    },
+    devtool: 'source-map'
 }
 module.exports = config
