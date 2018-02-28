@@ -3,10 +3,9 @@ import { Container } from 'semantic-ui-react'
 import { Icon, Segment, Divider, Label } from 'semantic-ui-react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 //import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
-import LoginForm from './components/LoginForm'
-import CreateAccount from './components/CreateAccount'
 import TaskDetails from './components/TaskDetails'
 import MainView from './components/MainView'
+import LoginView from './components/LoginView'
 
 import { connect } from 'react-redux'
 import { initialize } from './reducers/taskListReducer'
@@ -31,20 +30,8 @@ class App extends React.Component {
             <Container>
                 <Router>
                     <div>
-                        <Route path='/login' render={() =>
-                            <Container>
-                                <Segment raised padded>
-                                    <h1><Icon name='list' />askare</h1>
-                                    <p>Revolutionizing to-do lists. Join today!</p>
-                                    <CreateAccount />
-                                </Segment>
-                                <LoginForm />
-                            </Container>} />
-
-
-                        <Route exact path='/' render={() =>
-                            <MainView taskLists={this.props.taskLists} />
-                        } />
+                        <Route path='/login' render={() => <LoginView />} />
+                        <Route exact path='/' render={() => <MainView taskLists={this.props.taskLists} />}/>
                     </div>
                 </Router>
 

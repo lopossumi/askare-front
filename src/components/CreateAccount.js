@@ -7,6 +7,10 @@ const options = [
     { key: 'o', text: 'Other', value: 'other' }
 ]
 
+const submitHandler = () => {
+    console.log("Foo")
+}
+
 const CreateAccount = () => (
 
     <Modal trigger={
@@ -60,7 +64,7 @@ const CreateAccountForm = () => (
         <Form.Field>
             <Checkbox label='I agree to the Terms and Conditions.' />
         </Form.Field>
-        <Button type='submit'>Submit</Button>
+        <Button type='submit' onClick={submitHandler}>Submit</Button>
     </Form>
 )
 
