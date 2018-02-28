@@ -8,8 +8,8 @@ class TaskDetails extends React.Component {
         return (
             <Container>
                 <Segment
-                    color={this.props.color}>
-                    <Label attached='top' color={this.props.color}>{this.props.task.title}</Label>
+                    color={this.props.task.color}>
+                    <Label attached='top' color={this.props.task.color}>{this.props.task.title}</Label>
                     <ReactMarkdown source={this.props.task.content} />
                     <Divider />
                     <p>Priority: {this.props.task.priority}</p>

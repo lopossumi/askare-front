@@ -8,12 +8,11 @@ class MainView extends React.Component {
             <Container>
                 {this.props.taskLists && this.props.taskLists.map(taskList =>
                     <Segment key={taskList.id}>
-                        <Label attached='top'>{taskList.title}</Label>
+                        <Label attached='top' color={taskList.color}>{taskList.title}</Label>
                         {taskList.tasks.map(item =>
                             <TaskDetails
                                 key={item.id}
-                                task={item}
-                                color='blue' />)}
+                                task={item}/>)}
                     </Segment>)
                 }
             </Container>

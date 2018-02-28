@@ -16,6 +16,17 @@ const myTask2 = {
     list: '8273'
 }
 
+
+const myTask3 = {
+    id: '122832722',
+    title: 'my third task title',
+    content: '# Header 1\n[Link to google](http://www.google.com)\n## Header 2 \nSome content lorem ipsum-esque',
+    priority: 1,
+    status: 1,
+    list: '1234',
+    color: 'purple'
+}
+
 const list1 = {
     id: '8273',
     tasks: [
@@ -23,17 +34,18 @@ const list1 = {
         myTask2
     ],
     title: 'My tasklist number one',
-    owner: 'teppo'
+    owner: 'teppo',
+    color: 'blue'
 }
 
 const list2 = {
     id: '1234',
     tasks: [
-        myTask1,
-        myTask2
+        myTask3
     ],
     title: 'My tasklist number two',
-    owner: 'teppo'
+    owner: 'teppo',
+    color: 'green'
 }
 
 const test_data = [list1, list2]
