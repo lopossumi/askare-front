@@ -42,14 +42,17 @@ class App extends React.Component {
 
 
                         <Route path='/tasklists' render={() =>
+                            <Container>
+                            {this.props.taskLists && this.props.taskLists.map(taskList=> 
                             <Segment>
-                                <Label attached='top'>FixmeTitle</Label>
-                                {this.props.taskLists[0] && this.props.taskLists[0].tasks.map(item =>
+                                <Label attached='top'>{taskList.title}</Label>
+                                {taskList.tasks.map(item =>
                                     <TaskDetails
                                         key={item.id}
                                         task={item}
                                 color='blue' />)}
-                            </Segment>
+                            </Segment>)}
+                            </Container>
                         } />
                     </div>
                 </Router>
