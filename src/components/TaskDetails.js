@@ -19,7 +19,7 @@ class TaskDetails extends React.Component {
                 <Segment
                     color={this.props.task.color}>
                     <Label attached='top' color={this.props.task.color} onClick={this.toggleDetails}>{this.props.task.title}</Label>
-                    {this.state.showDetails && <div><ReactMarkdown source={this.props.task.content} />
+                    {this.state.showDetails && <div style={{textAlign: 'justify'}}><ReactMarkdown source={this.props.task.content} />
                         <Divider />
                     <p>Priority: {this.props.task.priority}</p>
                     <p>Status: {this.props.task.status}</p></div>}

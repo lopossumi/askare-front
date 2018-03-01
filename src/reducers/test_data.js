@@ -20,7 +20,7 @@ const myTask2 = {
 const myTask3 = {
     id: '122832722',
     title: 'my third task title',
-    content: '# Header 1\n[Link to google](http://www.google.com)\n## Header 2 \nSome content lorem ipsum-esque',
+    content: '# Header 1\n[Link to google](http://www.google.com)\n## Header 2 \nLorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris purus mauris, pretium quis semper blandit, fringilla vitae urna. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla metus sem, hendrerit porta lectus at, sollicitudin eleifend est. In lacinia mollis ullamcorper. Ut a imperdiet magna, vel hendrerit felis. Morbi nulla nibh, scelerisque a dapibus quis, maximus non justo. Nulla hendrerit laoreet ex ut dapibus. Sed quis lorem sit amet tellus commodo commodo. Nullam ultricies justo massa, vitae rutrum nisi vestibulum vitae. Aliquam sed euismod velit, eget accumsan enim. Quisque dictum placerat metus id pellentesque. Praesent quis porta nulla, eget placerat enim. Sed ut pharetra sem.',
     priority: 1,
     status: 1,
     list: '1234',
