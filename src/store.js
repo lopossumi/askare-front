@@ -6,7 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
 const reducer = combineReducers({
-  taskLists: taskListReducer
+    taskLists: taskListReducer
 })
 
 const store = createStore(

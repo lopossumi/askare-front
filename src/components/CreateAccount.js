@@ -8,7 +8,7 @@ const options = [
 ]
 
 const submitHandler = () => {
-    console.log("Foo")
+    console.log('Foo')
 }
 
 const CreateAccount = () => (

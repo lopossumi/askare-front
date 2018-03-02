@@ -1,19 +1,21 @@
 const myTask1 = {
     id: '9872344324',
-    title: 'My first task title',
-    content: 'This is a markdown flavoured thing.\n## Second level header\nLorem ipsum.\n### Third level header\nsuch is cool wow',
-    priority: 4,
+    title: 'Exam',
+    content: '# Remember me!\nExam is on friday 9th @ 14:00.',
+    priority: 3,
     status: 3,
-    list: '8273'
+    list: '8273',
+    color: 'red'
 }
 
 const myTask2 = {
     id: '918346722',
-    title: 'my second task title',
-    content: '# Header 1\n[Link to google](http://www.google.com)\n## Header 2 \nSome content lorem ipsum-esque',
+    title: 'Links for development',
+    content: '# Links for development\n* [Semantic UI React](https://react.semantic-ui.com/introduction)\n* Link 2',
     priority: 2,
     status: 2,
-    list: '8273'
+    list: '8273',
+    color:'pink'
 }
 
 

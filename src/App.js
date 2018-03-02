@@ -1,23 +1,22 @@
 import React from 'react'
 import { Container } from 'semantic-ui-react'
-import { Icon, Segment, Divider, Label } from 'semantic-ui-react'
+import { Icon, Divider } from 'semantic-ui-react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 //import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
-import TaskDetails from './components/TaskDetails'
 import MainView from './components/MainView'
 import LoginView from './components/LoginView'
 
 import { connect } from 'react-redux'
 import { initialize } from './reducers/taskListReducer'
 
-const myUser = {
-    taskLists: [
-        8273
-    ],
-    username: 'teppo',
-    firstName: 'Teppo',
-    lastName: 'Testi'
-}
+// const myUser = {
+//     taskLists: [
+//         8273
+//     ],
+//     username: 'teppo',
+//     firstName: 'Teppo',
+//     lastName: 'Testi'
+// }
 
 class App extends React.Component {
     componentDidMount = async () => {
