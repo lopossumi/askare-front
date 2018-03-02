@@ -3,7 +3,7 @@ import { Container } from 'semantic-ui-react'
 import { Icon, Segment, Divider, Label } from 'semantic-ui-react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 //import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
-import TaskDetails from './components/TaskDetails'
+//import TaskDetails from './components/TaskDetails'
 import MainView from './components/MainView'
 import LoginView from './components/LoginView'
 

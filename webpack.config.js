@@ -12,6 +12,9 @@ const config = {
         port: 3000,
         historyApiFallback: true,
     },
+    watchOptions:{
+        ignored: '/node_modules/'
+    },
     module: {
         rules: [
             {
