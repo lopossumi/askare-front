@@ -5,7 +5,7 @@ import { Grid, Segment, Label } from 'semantic-ui-react'
 class MainView extends React.Component {
     render() {
         return (
-            <Grid stackable columns='3'>
+            <Grid stackable columns='2'>
 
                 {this.props.taskLists && this.props.taskLists.map(taskList =>
                     <Grid.Column key={taskList.id}>

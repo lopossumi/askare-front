@@ -50,6 +50,15 @@ const list2 = {
     color: 'green'
 }
 
-const test_data = [list1, list2]
+const list3 = {
+    id: '1235',
+    tasks: [
+        myTask3
+    ],
+    title: 'My tasklist number three',
+    owner: 'teppo',
+}
+
+const test_data = [list1, list2, list3]
 
 export default test_data

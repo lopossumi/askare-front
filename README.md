@@ -11,3 +11,4 @@ TKT21010 Full stack -websovelluskehitys harjoitustyö
 | 28.2.2018 | 2.0h  | Refactoring. Colors. Refactoring.
 | 1.3.2018  | 1.0h  | UI tweaks: grid, collapsing details
 | 2.3.2018  | 1.5h  | Moving to CRA from self-maintained Webpack for sanity
+| 2.3.2018  | 0.5h  | Transitions

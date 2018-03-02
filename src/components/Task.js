@@ -22,9 +22,7 @@ class Task extends React.Component {
                 <Segment
                     color={this.props.task.color}>
                     <Label attached='top' color={this.props.task.color} onClick={this.toggleDetails}>{this.props.task.title}</Label>
-                    {this.state.showDetails &&
-                        <TaskDetails task={this.props.task} />
-                    }
+                    <TaskDetails task={this.props.task} show={this.state.showDetails}/>
                 </Segment>
             </Container>
         )
