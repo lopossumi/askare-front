@@ -1,5 +1,5 @@
 import React from 'react'
-import TaskDetails from './TaskDetails'
+import Task from './Task'
 import { Grid, Segment, Label } from 'semantic-ui-react'
 
 class MainView extends React.Component {
@@ -12,7 +12,7 @@ class MainView extends React.Component {
                         <Segment>
                             <Label attached='top' color={taskList.color}>{taskList.title}</Label>
                             {taskList.tasks.map(item =>
-                                <TaskDetails
+                                <Task
                                     key={item.id}
                                     task={item} />)}
                         </Segment>

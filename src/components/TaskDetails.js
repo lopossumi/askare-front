@@ -9,9 +9,10 @@ class TaskDetails extends React.Component {
         this.state = { showDetails: false }
     }
 
-    toggleDetails = () => {
-        this.setState({ showDetails: !this.state.showDetails })
-        console.log('details is', this.state.showDetails)
+    detailStyle = {
+        textAlign: 'justify',
+        opacity: 1,
+        transition: 'opacity 500ms ease-in'
     }
 
     render() {
