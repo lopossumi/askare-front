@@ -2,7 +2,6 @@ import React from 'react'
 import { Container } from 'semantic-ui-react'
 import { Icon, Divider } from 'semantic-ui-react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-//import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 import MainView from './components/MainView'
 import LoginView from './components/LoginView'
 
