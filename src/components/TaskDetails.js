@@ -18,23 +18,13 @@ class TaskDetails extends React.Component {
     render() {
         const task = this.props.task
         return (
-            <Container>
-                <Segment
-                    color={this.props.task.color}>
-                    <Label
-                        attached='top'
-                        onClick={this.toggleDetails}>
-                        <PriorityIcon priority={task.priority} />
-                        <Label.Detail>{this.props.task.title}</Label.Detail>
-                    </Label>
-                    {this.state.showDetails && <div style={{ textAlign: 'justify' }}><ReactMarkdown source={this.props.task.content} />
-                        <Divider />
-                        <p>Priority: <PriorityIcon priority={task.priority} /></p>
-                        <p>Status: {this.props.task.status}</p></div>}
-                </Segment>
-            </Container>
+            <div style={this.detailStyle}><ReactMarkdown source={this.props.task.content} />
+                <Divider />
+                <p>Priority: <PriorityIcon priority={task.priority} /></p>
+                <p>Status: {this.props.task.status}</p></div>
         )
     }
 }
+
 
 export default TaskDetails

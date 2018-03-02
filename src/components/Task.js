@@ -1,9 +1,9 @@
-import { Container, Segment, Divider, Label } from 'semantic-ui-react'
+import { Container, Segment, Label } from 'semantic-ui-react'
 import TaskDetails from './TaskDetails'
 import React from 'react'
-import ReactMarkdown from 'react-markdown'
+//import ReactMarkdown from 'react-markdown'
 
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
+//import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 class Task extends React.Component {
     constructor(props) {
