@@ -12,3 +12,4 @@ TKT21010 Full stack -websovelluskehitys harjoitustyö
 | 1.3.2018  | 1.0h  | UI tweaks: grid, collapsing details
 | 2.3.2018  | 1.5h  | Moving to CRA from self-maintained Webpack for sanity
 | 2.3.2018  | 0.5h  | Transitions
+| 4.3.2018  | 1.5h  | Registration connected to backend
