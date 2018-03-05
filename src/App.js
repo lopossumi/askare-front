@@ -19,7 +19,6 @@ import { initialize } from './reducers/taskListReducer'
 
 class App extends React.Component {
     componentDidMount = async () => {
-        console.log('trying to initialize')
         this.props.initialize()
     }
 
@@ -28,7 +27,7 @@ class App extends React.Component {
             <Container>
                 <Router>
                     <div>
-                        <Route path='/login' render={() => <LoginView />} />
+                        <Route path='/login' render={({history}) => <LoginView history={history}/>} />
                         <Route exact path='/' render={() => <MainView taskLists={this.props.taskLists} />}/>
                     </div>
                 </Router>

@@ -1,4 +1,5 @@
-import test_data from './test_data'
+//import test_data from './test_data'
+import taskListService from '../services/taskList'
 
 const taskListReducer = (store = [], action) => {
     switch (action.type) {
@@ -20,9 +21,7 @@ export const createTaskList = (taskList) => {
 
 export const initialize = () => {
     return async (dispatch) => {
-        //const taskLists = await taskListService.getAll()
-        const taskLists = test_data
-        console.log(taskLists)
+        const taskLists = await taskListService.getAll()
 
         dispatch({
             type: 'INIT',

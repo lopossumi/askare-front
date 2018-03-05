@@ -2,6 +2,8 @@ import React from 'react'
 import { Button, Form, Container, Segment, Icon } from 'semantic-ui-react'
 import CreateAccount from './CreateAccount'
 import loginService from '../services/login'
+import { connect } from 'react-redux'
+import { login } from '../reducers/userReducer'
 
 class LoginView extends React.Component {
     constructor(props) {
@@ -29,7 +31,8 @@ class LoginView extends React.Component {
         if (response.error) {
             console.log(response.error)
         } else {
-            console.log(`user ${response.username} logged in! now set token and show main view.`)
+            this.props.login(response)
+            this.props.history.push('/') 
         }
     }
 
@@ -72,4 +75,10 @@ class LoginView extends React.Component {
         )
     }
 }
-export default LoginView
+
+//export default LoginView
+
+export default connect(
+    null,
+    { login }
+)(LoginView)
