@@ -17,7 +17,11 @@ class CreateAccount extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this)
     }
 
-    submitHandler = async (event) => {
+    handleInputChange(event) { 
+        this.setState({ [event.target.name]: event.target.value })
+    }
+
+    handleSubmit = async (event) => {
         event.preventDefault()
         if (this.state.password1 === this.state.password2) {
             const newUser = {
@@ -36,16 +40,6 @@ class CreateAccount extends React.Component {
                 this.handleClose()
             }
         }
-    }
-
-    handleInputChange(event) {
-        const target = event.target
-        const value = target.value
-        const name = target.name
-
-        this.setState({
-            [name]: value
-        });
     }
 
     handleOpen = () => this.setState({ modalOpen: true })
@@ -118,7 +112,7 @@ class CreateAccount extends React.Component {
                         <Form.Field>
                             <Checkbox label='I agree to any Terms and Conditions.' />
                         </Form.Field>
-                        <Button type='submit' onClick={this.submitHandler}>Submit</Button>
+                        <Button type='submit' onClick={this.handleSubmit}>Submit</Button>
                     </Form>
                 </Modal.Content>
             </Modal>

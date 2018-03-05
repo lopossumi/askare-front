@@ -1,4 +1,4 @@
-import { Container, Segment, Divider, Label, Transition } from 'semantic-ui-react'
+import { Divider, Transition } from 'semantic-ui-react'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import PriorityIcon from './PriorityIcon'

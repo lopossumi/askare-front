@@ -13,3 +13,4 @@ TKT21010 Full stack -websovelluskehitys harjoitustyö
 | 2.3.2018  | 1.5h  | Moving to CRA from self-maintained Webpack for sanity
 | 2.3.2018  | 0.5h  | Transitions
 | 4.3.2018  | 1.5h  | Registration connected to backend
+| 5.3.2018  | 2.0h  | Moving to yarn & login handler created and connected to backend

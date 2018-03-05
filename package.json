@@ -1,7 +1,7 @@
 {
-    "name": "askareact",
+    "name": "askare-front",
     "version": "0.1.0",
-    "description": "Askare",
+    "description": "Askare Frontend",
     "dependencies": {
         "axios": "^0.18.0",
         "react": "^16.2.0",

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Container } from 'semantic-ui-react'
-import { Icon, Divider } from 'semantic-ui-react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import MainView from './components/MainView'
 import LoginView from './components/LoginView'
+import Footer from './components/Footer'
 
 import { connect } from 'react-redux'
 import { initialize } from './reducers/taskListReducer'
@@ -39,16 +39,10 @@ class App extends React.Component {
     }
 }
 
-const Footer = () => (
-    <div>
-        <Divider />
-        <Icon name='list' />askare &copy; Mikko Loponen 2018. < a href='https://github.com/lopossumi/askareact' > View source <Icon name='github' />GitHub.</a >
-    </div>
-)
-
 const mapStateToProps = (state) => {
     return {
         taskLists: state.taskLists,
+        user: state.user
     }
 }
 
