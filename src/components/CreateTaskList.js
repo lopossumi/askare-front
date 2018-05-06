@@ -31,7 +31,6 @@ class CreateTaskList extends React.Component {
     handleSubmit = async (event) => {
         event.preventDefault()
         const newTaskList = {
-            owner: '', // Get from token? redux? where
             title: this.state.title,
             color: this.state.color
         }

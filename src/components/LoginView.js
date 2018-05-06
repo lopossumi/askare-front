@@ -31,6 +31,7 @@ class LoginView extends React.Component {
         if (response.error) {
             console.log(response.error)
         } else {
+            window.localStorage.setItem('loggedUser', JSON.stringify(response))
             this.props.login(response)
             this.props.history.push('/') 
         }
