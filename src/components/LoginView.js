@@ -4,6 +4,8 @@ import CreateAccount from './CreateAccount'
 import loginService from '../services/login'
 import { connect } from 'react-redux'
 import { login } from '../reducers/userReducer'
+import { initialize } from '../reducers/taskListReducer'
+import taskList from '../services/taskList'
 
 class LoginView extends React.Component {
     constructor(props) {
@@ -23,16 +25,18 @@ class LoginView extends React.Component {
         event.preventDefault()
         console.log('attempting login:')
 
-        const response = await loginService
+        const user = await loginService
             .login({
                 username: this.state.username,
                 password: this.state.password
             })
-        if (response.error) {
-            console.log(response.error)
+        if (user.error) {
+            console.log(user.error)
         } else {
-            window.localStorage.setItem('loggedUser', JSON.stringify(response))
-            this.props.login(response)
+            window.localStorage.setItem('loggedUser', JSON.stringify(user))
+            taskList.setToken(user.token)
+            this.props.login(user)
+            this.props.initialize()
             this.props.history.push('/') 
         }
     }
@@ -81,5 +85,5 @@ class LoginView extends React.Component {
 
 export default connect(
     null,
-    { login }
+    { login, initialize }
 )(LoginView)

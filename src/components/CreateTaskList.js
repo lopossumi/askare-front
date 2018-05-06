@@ -1,6 +1,9 @@
 import React from 'react'
 import { Button, Form, Modal, Icon, Dropdown } from 'semantic-ui-react'
 import taskListService from '../services/taskList'
+import { createTaskList } from '../reducers/taskListReducer'
+import { connect } from 'react-redux'
+
 
 const colorOptions = [
     'green', 'red', 'blue', 'pink'
@@ -40,6 +43,7 @@ class CreateTaskList extends React.Component {
             console.log(response.error)
         } else {
             console.log(`taskList ${response.title} created! close modal and show message.`)
+            this.props.createTaskList(response)
             this.handleClose()
         }
     }
@@ -88,4 +92,9 @@ class CreateTaskList extends React.Component {
     }
 }
 
-export default CreateTaskList
+//export default CreateTaskList
+export default connect(
+    null,
+    { createTaskList }
+)(CreateTaskList)
+

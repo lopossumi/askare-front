@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'http://localhost:3001/api/tasklists'
+const url = '/api/tasklists'
 
 let token = null
 
@@ -18,9 +18,6 @@ const getAll = () => {
 }
 
 const create = async (taskList) => {
-
-    //TBC: This should get and set token from somewhere. session storage?
-
     const config = {
         headers: { 'Authorization': token }
     }

@@ -12,15 +12,14 @@ import { login } from './reducers/userReducer'
 
 class App extends React.Component {
     componentDidMount = async () => {
-        // On first request or refresh check the local storage for logged user info
+        // On first request or refresh check the local storage for logged user info.
         const loggedUserJSON = window.localStorage.getItem('loggedUser')
         if (loggedUserJSON) {
           const user = JSON.parse(loggedUserJSON)
           taskList.setToken(user.token)
-          login(user)
+          this.props.login(user)
+          this.props.initialize()
         }
-      
-        this.props.initialize()
     }    
 
     render() {
@@ -29,7 +28,7 @@ class App extends React.Component {
                 <Router>
                     <div>
                         <Route path='/login' render={({history}) => <LoginView history={history}/>} />
-                        <Route exact path='/' render={() => this.props.user ? <MainView taskLists={this.props.taskLists} /> : <Redirect to='/login' />}/>
+                        <Route exact path='/' render={() => window.localStorage.getItem('loggedUser') ? <MainView taskLists={this.props.taskLists} /> : <Redirect to='/login' />}/>
                     </div>
                 </Router>
 
@@ -48,5 +47,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    { initialize }
+    { initialize, login }
 )(App)
