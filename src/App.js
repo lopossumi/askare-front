@@ -20,7 +20,7 @@ class App extends React.Component {
           this.props.login(user)
           this.props.initialize()
         }
-    }    
+    }
 
     render() {
         return (

@@ -1,13 +1,13 @@
 import React from 'react'
 import Task from './Task'
 import { Grid, Segment, Label } from 'semantic-ui-react'
-import CreateTaskList from './CreateTaskList'
+import Header from './Header'
 
 class MainView extends React.Component {
     render() {
         return (
             <div>
-                <CreateTaskList />
+                <Header />
                 <Grid stackable columns='2'>
 
                     {this.props.taskLists && this.props.taskLists.map(taskList =>
