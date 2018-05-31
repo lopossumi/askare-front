@@ -1,5 +1,4 @@
 const userReducer = (store = null, action) => {
-    console.log(action.data)
     switch (action.type) {
         case 'LOGIN':
             return action.data

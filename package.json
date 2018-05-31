@@ -32,6 +32,5 @@
     "bugs": {
         "url": "https://github.com/lopossumi/askareact/issues"
     },
-    "homepage": "https://github.com/lopossumi/askareact#readme",
-    "proxy": "http://localhost:3001/"
+    "homepage": "http://localhost"
 }

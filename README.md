@@ -1,5 +1,5 @@
-# askareact
-TKT21010 Full stack -websovelluskehitys harjoitustyö
+# askare-front
+React front-end solution for a HY-CS project course TKT21010 (work in progress). The backend can be found at [https://github.com/lopossumi/askare-server] and the application is running at [askare.herokuapps.com].
 
 ## Log
 | Date      | Hours | Details
@@ -17,3 +17,8 @@ TKT21010 Full stack -websovelluskehitys harjoitustyö
 | 5.3.2018  | 2.0h  | User login connected to redux store; create taskList dialog
 | 6.5.2018  | 2.0h  | Battling with user authentication & session storage
 | 6.5.2018  | 1.0h  | Login works now. Added proxy.
+| 25.5.2018 | 1.0h  | Header + logout
+| 31.5.2018 | N/A   | Updated readme + minor fixes
+|-----------|-------|-----------------------------------------------------------
+| Total     | 31.5h | NB: Total includes backend hours (23h front, 8.5h back)
+|-----------|-------|-----------------------------------------------------------

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Dropdown, Button, Icon } from 'semantic-ui-react'
+import { Menu, Dropdown } from 'semantic-ui-react'
 import CreateTaskList from './CreateTaskList'
 import LogoutButton from './LogoutButton'
 
