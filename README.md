@@ -1,5 +1,5 @@
 # askare-front
-React front-end solution for a HY-CS project course TKT21010 (work in progress). The backend can be found at [https://github.com/lopossumi/askare-server] and the application is running at [askare.herokuapps.com].
+React front-end solution for a HY-CS project course TKT21010 (work in progress). The backend can be found at [https://github.com/lopossumi/askare-server] and the application is running at [https://askare.herokuapps.com].
 
 ## Log
 | Date      | Hours | Details
