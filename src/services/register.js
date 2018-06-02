@@ -1,5 +1,5 @@
 import axios from 'axios'
-const url = '/api/users'
+const url = 'https://askare-server.herokuapp.com/api/users'
 
 const register = async (user) => {
     try {

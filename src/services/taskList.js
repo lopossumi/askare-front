@@ -1,6 +1,5 @@
 import axios from 'axios'
-
-const url = '/api/tasklists'
+const url = 'https://askare-server.herokuapp.com/api/tasklists'
 
 let token = null
 

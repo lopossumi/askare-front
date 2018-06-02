@@ -31,7 +31,10 @@ class LoginView extends React.Component {
                 password: this.state.password
             })
         if (user.error) {
+            console.log('loginView logged error:')
             console.log(user.error)
+        } else if (!user.username) {
+            console.log('Invalid response from server. User not logged in.')
         } else {
             window.localStorage.setItem('loggedUser', JSON.stringify(user))
             taskList.setToken(user.token)
