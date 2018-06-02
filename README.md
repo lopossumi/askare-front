@@ -22,3 +22,4 @@ React front-end solution for a HY-CS project course TKT21010 (work in progress).
 |-----------|-------|-----------------------------------------------------------
 | Total     | 31.5h | NB: Total includes backend hours (23h front, 8.5h back)
 |-----------|-------|-----------------------------------------------------------
+| 2.6.2018  | 0.5h  | Deployed to Heroku using CRA buildpack + url configs
