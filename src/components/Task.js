@@ -19,9 +19,11 @@ class Task extends React.Component {
     render() {
         return (
             <Container>
-                <Segment
-                    color={this.props.task.color}>
-                    <Label attached='top' color={this.props.task.color} onClick={this.toggleDetails}>{this.props.task.title}</Label>
+                <Segment onClick={this.toggleDetails}>
+                    <h3>{this.props.task.color 
+                        ? <Label color={this.props.task.color || 'grey'} ribbon='right'/> 
+                        : <Label ribbon='right'/>}
+                    {this.props.task.title}</h3>
                     <TaskDetails task={this.props.task} show={this.state.showDetails}/>
                 </Segment>
             </Container>

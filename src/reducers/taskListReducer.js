@@ -1,9 +1,10 @@
 import taskListService from '../services/taskList'
+import taskService from '../services/task'
 
 const taskListReducer = (store = [], action) => {
     switch (action.type) {
-        case 'INIT_TASKLISTS':
-            return action.data
+        case 'INIT':
+            return action.taskLists
         case 'CREATE_TASKLIST':
             return [action.taskList, ...store]
         default:
@@ -18,13 +19,18 @@ export const createTaskList = (taskList) => {
     }
 }
 
-export const initialize = () => {
+export const initialize = (user) => {
     return async (dispatch) => {
+        taskListService.setToken(user.token)
+        taskService.setToken(user.token)
+
         const taskLists = await taskListService.getAll()
+        const tasks = await taskService.getAll()
 
         dispatch({
-            type: 'INIT_TASKLISTS',
-            data: taskLists
+            type: 'INIT',
+            taskLists,
+            tasks
         })
     }
 }

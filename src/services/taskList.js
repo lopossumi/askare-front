@@ -5,6 +5,7 @@ let token = null
 
 const setToken = (newToken) => {
     token = `bearer ${newToken}`
+    console.log('token was set to tasklists')
 }
 
 const getAll = () => {
@@ -12,6 +13,7 @@ const getAll = () => {
         headers: { 'Authorization': token }
     }
 
+    console.log('tasklist service: trying to get all lists')
     const request = axios.get(url, config)
     return request.then(response => response.data)
 }

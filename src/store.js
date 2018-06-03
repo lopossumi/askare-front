@@ -8,7 +8,7 @@ import thunk from 'redux-thunk'
 const reducer = combineReducers({
     taskLists: taskListReducer,
     user: userReducer,
-    task: taskReducer
+    tasks: taskReducer
 })
 
 const store = createStore(

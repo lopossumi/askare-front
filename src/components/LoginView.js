@@ -5,7 +5,6 @@ import loginService from '../services/login'
 import { connect } from 'react-redux'
 import { login } from '../reducers/userReducer'
 import { initialize } from '../reducers/taskListReducer'
-import taskList from '../services/taskList'
 
 class LoginView extends React.Component {
     constructor(props) {
@@ -37,9 +36,8 @@ class LoginView extends React.Component {
             console.log('Invalid response from server. User not logged in.')
         } else {
             window.localStorage.setItem('loggedUser', JSON.stringify(user))
-            taskList.setToken(user.token)
             this.props.login(user)
-            this.props.initialize()
+            this.props.initialize(user)
             this.props.history.push('/') 
         }
     }

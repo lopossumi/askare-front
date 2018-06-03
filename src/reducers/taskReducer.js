@@ -1,13 +1,21 @@
-import taskService from '../services/task'
-
 const taskReducer = (store = [], action) => {
     switch (action.type) {
-        case 'INIT_TASKS':
-            return action.data
+        case 'INIT':
+            return action.tasks
         case 'CREATE_TASK':
             return [...store, action.task]
+        case 'REMOVE_TASK':
+            console.log('action id', action.id)
+            return store.filter(x => x._id !== action.id)
         default:
             return store
+    }
+}
+
+export const removeTask = (id) => {
+    return {
+        type: 'REMOVE_TASK',
+        id
     }
 }
 
@@ -15,17 +23,6 @@ export const createTask = (task) => {
     return {
         type: 'CREATE_TASK',
         task
-    }
-}
-
-export const initialize = () => {
-    return async (dispatch) => {
-        const tasks = await taskService.getAll()
-
-        dispatch({
-            type: 'INIT_TASKS',
-            data: tasks
-        })
     }
 }
 

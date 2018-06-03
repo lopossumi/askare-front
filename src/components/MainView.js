@@ -13,11 +13,12 @@ class MainView extends React.Component {
 
                     {this.props.taskLists && this.props.taskLists.map(taskList =>
                         <Grid.Column key={taskList._id}>
-                            <Segment color={taskList.color}>
-                                <h2>{taskList.title}<CreateTask tasklist={taskList._id}/></h2>
+                            
+                                <Segment key={taskList._id} color={taskList.color || 'grey'}>
+                                <h1>{taskList.title}<CreateTask tasklist={taskList._id}/></h1>
                                 
                             </Segment>
-                            {taskList.tasks.map(item =>
+                            {this.props.tasks.filter(x => x.tasklist===taskList._id).map(item =>
                                     <Task
                                         key={item._id}
                                         task={item} />)}

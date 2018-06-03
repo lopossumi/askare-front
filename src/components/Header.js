@@ -1,7 +1,6 @@
 import React from 'react'
 import { Menu, Dropdown } from 'semantic-ui-react'
 import CreateTaskList from './CreateTaskList'
-import CreateTask from './CreateTask'
 import LogoutButton from './LogoutButton'
 
 const Header = () => (
@@ -9,10 +8,6 @@ const Header = () => (
         <Menu>
             <Menu.Item>
                 <CreateTaskList />
-            </Menu.Item>
-
-            <Menu.Item>
-                <CreateTask />
             </Menu.Item>
 
             <Menu.Menu position='right'>

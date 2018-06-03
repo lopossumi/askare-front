@@ -59,7 +59,14 @@ class CreateTask extends React.Component {
     }
 
     handleOpen = () => this.setState({ modalOpen: true })
-    handleClose = () => this.setState({ modalOpen: false })
+    handleClose = () => this.setState({ 
+        modalOpen: false,
+        title: '',
+        content: '',
+        priority: '',
+        status: '',
+        color: ''    
+    })
 
     render() {
         return (
