@@ -24,3 +24,4 @@ React front-end solution for a HY-CS project course TKT21010 (work in progress).
 |-----------|-------|-----------------------------------------------------------
 | 2.6.2018  | 0.5h  | Deployed to Heroku using CRA buildpack + url configs
 | 2.6.2018  | 0.5h  | Fixed client-side routing in Heroku using static.json
+| 3.6.2018  | 2.0h  | Proxy configuration; adding tasks to lists; user interface tweaks
