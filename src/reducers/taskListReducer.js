@@ -7,6 +7,8 @@ const taskListReducer = (store = [], action) => {
             return action.taskLists
         case 'CREATE_TASKLIST':
             return [action.taskList, ...store]
+        case 'REMOVE_TASKLIST':
+            return store.filter(x => x._id !== action.id)
         default:
             return store
     }
@@ -16,6 +18,13 @@ export const createTaskList = (taskList) => {
     return {
         type: 'CREATE_TASKLIST',
         taskList
+    }
+}
+
+export const removeTaskList = (id) => {
+    return {
+        type: 'REMOVE_TASKLIST',
+        id
     }
 }
 

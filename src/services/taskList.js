@@ -31,8 +31,22 @@ const create = async (taskList) => {
     }
 }
 
+const remove = async (id) => {
+    const config = {
+        headers: { 'Authorization': token }
+    }
+
+    try {
+        const response = await axios.delete(url+`/${id}`, config)
+        return response.data
+    } catch (error) {
+        return error.response.data
+    }
+}
+
 export default { 
     getAll, 
     setToken,
-    create
+    create,
+    remove
 }

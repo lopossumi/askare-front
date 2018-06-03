@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Modal, Icon, Dropdown, Divider } from 'semantic-ui-react'
+import { Button, Form, Modal, Icon, Dropdown, Divider, TextArea } from 'semantic-ui-react'
 import taskService from '../services/task'
 import { createTask } from '../reducers/taskReducer'
 import { connect } from 'react-redux'
@@ -103,7 +103,8 @@ class CreateTask extends React.Component {
 
                         <Form.Field>
                             <label>Content</label>
-                            <input
+                            <TextArea
+                                rows='10'
                                 placeholder='Write some content'
                                 name='content'
                                 onChange={this.handleInputChange}
