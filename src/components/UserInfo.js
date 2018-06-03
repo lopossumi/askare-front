@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from './Header'
-import { Container, Table, Header as THeader } from 'semantic-ui-react'
+import { Table, Header as THeader } from 'semantic-ui-react'
 
 class UserInfo extends React.Component {
     render() {

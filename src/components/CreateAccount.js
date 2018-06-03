@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, Checkbox, Form, Modal, Icon } from 'semantic-ui-react'
 import registerService from '../services/register'
-import loginService from '../services/login'
 
 class CreateAccount extends React.Component {
     constructor(props) {
