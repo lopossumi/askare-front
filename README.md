@@ -27,3 +27,4 @@ React front-end solution for a HY-CS project course TKT21010 (work in progress).
 | 3.6.2018  | 2.0h  | Proxy configuration; adding tasks to lists; user interface tweaks
 | 3.6.2018  | 2.0h  | Delete tasks
 | 3.6.2018  | 2.0h  | User info, bugfixes
+| 3.6.2018  | 1.0h  | Removing task lists
