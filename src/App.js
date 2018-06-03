@@ -3,6 +3,7 @@ import { Container } from 'semantic-ui-react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import MainView from './components/MainView'
 import LoginView from './components/LoginView'
+import UserInfo from './components/UserInfo'
 import Footer from './components/Footer'
 
 import { connect } from 'react-redux'
@@ -30,7 +31,16 @@ class App extends React.Component {
                 <Router>
                     <div>
                         <Route path='/login' render={({history}) => <LoginView history={history}/>} />
-                        <Route exact path='/' render={() => window.localStorage.getItem('loggedUser') ? <MainView taskLists={this.props.taskLists} tasks={this.props.tasks}/> : <Redirect to='/login' />}/>
+                        
+                        <Route path='/userinfo' render={() => 
+                            window.localStorage.getItem('loggedUser') 
+                            ? <UserInfo user={this.props.user}/>
+                            : <Redirect to='/login' />}/>
+                        
+                        <Route exact path='/' render={({history}) => 
+                            window.localStorage.getItem('loggedUser') 
+                            ? <MainView history={history} taskLists={this.props.taskLists} tasks={this.props.tasks}/> 
+                            : <Redirect to='/login' />}/>
                     </div>
                 </Router>
 

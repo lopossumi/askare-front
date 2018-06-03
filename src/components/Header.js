@@ -2,6 +2,7 @@ import React from 'react'
 import { Menu, Dropdown } from 'semantic-ui-react'
 import CreateTaskList from './CreateTaskList'
 import LogoutButton from './LogoutButton'
+import { Link } from 'react-router-dom'
 
 const Header = () => (
     <div>
@@ -13,7 +14,7 @@ const Header = () => (
             <Menu.Menu position='right'>
                 <Dropdown item text='My account'>
                     <Dropdown.Menu>
-                        <Dropdown.Item>Info</Dropdown.Item>
+                        <Dropdown.Item as={Link} to='/userinfo'>Info</Dropdown.Item>
                         <Dropdown.Item>Edit details</Dropdown.Item>
                         <Dropdown.Item>Remove account</Dropdown.Item>
                     </Dropdown.Menu>
