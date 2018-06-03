@@ -32,6 +32,6 @@
     "bugs": {
         "url": "https://github.com/lopossumi/askareact/issues"
     },
-    "homepage": "http://askare.herokuapp.com",
-    "proxy": "http://askare-server.herokuapp.com"
+    "homepage": "https://askare.herokuapp.com",
+    "proxy": "https://askare-server.herokuapp.com"
 }
