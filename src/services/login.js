@@ -1,6 +1,5 @@
 import axios from 'axios'
-//const url = 'localhost'
-const url = 'https://askare-server.herokuapp.com/api/login'
+const url = '/api/login'
 
 const login = async (credentials) => {
     try {

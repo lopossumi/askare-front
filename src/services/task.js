@@ -1,5 +1,5 @@
 import axios from 'axios'
-const url = '/api/tasklists'
+const url = '/api/tasks'
 
 let token = null
 
@@ -16,13 +16,13 @@ const getAll = () => {
     return request.then(response => response.data)
 }
 
-const create = async (taskList) => {
+const create = async (task) => {
     const config = {
         headers: { 'Authorization': token }
     }
 
     try {
-        const response = await axios.post(url, {...taskList}, config)
+        const response = await axios.post(url, {...task}, config)
         return response.data
     } catch (error) {
         return error.response.data

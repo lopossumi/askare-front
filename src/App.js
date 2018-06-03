@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import { connect } from 'react-redux'
 import { initialize } from './reducers/taskListReducer'
 import taskList from './services/taskList'
+import task from './services/task'
 import { login } from './reducers/userReducer'
 
 class App extends React.Component {
@@ -17,6 +18,7 @@ class App extends React.Component {
         if (loggedUserJSON) {
           const user = JSON.parse(loggedUserJSON)
           taskList.setToken(user.token)
+          task.setToken(user.token)
           this.props.login(user)
           this.props.initialize()
         }
@@ -41,6 +43,7 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
     return {
         taskLists: state.taskLists,
+        tasks: state.tasks,
         user: state.user
     }
 }

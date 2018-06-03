@@ -1,6 +1,7 @@
 import React from 'react'
 import { Menu, Dropdown } from 'semantic-ui-react'
 import CreateTaskList from './CreateTaskList'
+import CreateTask from './CreateTask'
 import LogoutButton from './LogoutButton'
 
 const Header = () => (
@@ -11,7 +12,7 @@ const Header = () => (
             </Menu.Item>
 
             <Menu.Item>
-                Second page
+                <CreateTask />
             </Menu.Item>
 
             <Menu.Menu position='right'>
@@ -29,6 +30,7 @@ const Header = () => (
             </Menu.Menu>
 
         </Menu>
+        <br/>
     </div>
 )
 

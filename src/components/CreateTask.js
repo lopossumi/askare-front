@@ -1,19 +1,22 @@
 import React from 'react'
 import { Button, Form, Modal, Icon, Dropdown, Divider } from 'semantic-ui-react'
-import taskListService from '../services/taskList'
-import { createTaskList } from '../reducers/taskListReducer'
+import taskService from '../services/task'
+import { createTask } from '../reducers/taskReducer'
 import { connect } from 'react-redux'
-
 
 const colorOptions = [
     'green', 'red', 'blue', 'pink'
 ].map(x => ({text: x, value: x}))
 
-class CreateTaskList extends React.Component {
+class CreateTask extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             title: '',
+            tasklist: props.tasklist,
+            content: '',
+            priority: '',
+            status: '',
             color: ''
         }
         this.handleInputChange = this.handleInputChange.bind(this)
@@ -31,17 +34,26 @@ class CreateTaskList extends React.Component {
 
     handleSubmit = async (event) => {
         event.preventDefault()
-        const newTaskList = {
+        const newTask = {
             title: this.state.title,
-            color: this.state.color
+            tasklist: this.state.tasklist,
+            content: this.state.content,
+            priority: this.state.priority,
+            status: this.state.status,
+            color: this.state.color,
         }
 
-        const response = await taskListService.create(newTaskList)
+        const response = await taskService.create(newTask)
         if (response.error) {
             console.log(response.error)
         } else {
-            console.log(`taskList ${response.title} (${response._id}) created! close modal and show message.`)
-            this.props.createTaskList(response)
+            console.log(`task ${response.title} added to list ${this.state.tasklist}! close modal and show message.`)
+            console.log(response)
+            
+            // Add task to local store
+            this.props.createTask(response)
+
+            // Close modal
             this.handleClose()
         }
     }
@@ -53,17 +65,24 @@ class CreateTaskList extends React.Component {
         return (
             <Modal
                 trigger={
-                    <Button
-                        color='green'
-                        icon='list'
-                        content='Create new list'
-                        labelPosition='left'
-                        onClick={this.handleOpen} />
+                    <Button size='mini' floated='right' animated color='green' onClick={this.handleOpen}>
+                        <Button.Content hidden>New...</Button.Content>
+                        <Button.Content visible>
+                            <Icon name='plus' />
+                        </Button.Content>
+                    </Button>
+              
+                    // <Button
+                    //     color='green'
+                    //     icon='plus'
+                    //     //content='Create new task'
+                    //     labelPosition='left'
+                    //     onClick={this.handleOpen} />
                 }
                 open={this.state.modalOpen}
                 onClose={this.handleClose}>
 
-                <Modal.Header color='blue'><Icon name='list' />Create a new task list</Modal.Header>
+                <Modal.Header color='blue'><Icon name='plus' />Create a new task</Modal.Header>
                 <Modal.Content>
                     <Form>
                         <Form.Field>
@@ -73,6 +92,15 @@ class CreateTaskList extends React.Component {
                                 name='title'
                                 onChange={this.handleInputChange}
                                 value={this.state.title} />
+                        </Form.Field>
+
+                        <Form.Field>
+                            <label>Content</label>
+                            <input
+                                placeholder='Write some content'
+                                name='content'
+                                onChange={this.handleInputChange}
+                                value={this.state.content} />
                         </Form.Field>
 
                         <Form.Field>
@@ -92,8 +120,8 @@ class CreateTaskList extends React.Component {
     }
 }
 
-//export default CreateTaskList
 export default connect(
     null,
-    { createTaskList }
-)(CreateTaskList)
+    { createTask }
+)(CreateTask)
+
