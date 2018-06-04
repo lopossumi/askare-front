@@ -55,7 +55,7 @@ class CreateTaskList extends React.Component {
                 trigger={
                     <Button
                         color='green'
-                        icon='list'
+                        icon='plus'
                         content='Create new list'
                         labelPosition='left'
                         onClick={this.handleOpen} />

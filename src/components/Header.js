@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Dropdown } from 'semantic-ui-react'
+import { Menu, Dropdown, Icon } from 'semantic-ui-react'
 import CreateTaskList from './CreateTaskList'
 import LogoutButton from './LogoutButton'
 import { Link } from 'react-router-dom'
@@ -7,6 +7,10 @@ import { Link } from 'react-router-dom'
 const Header = () => (
     <div>
         <Menu>
+            <Menu.Item as={Link} to='/'>
+                <Icon name='list' /> askare
+            </Menu.Item>
+
             <Menu.Item>
                 <CreateTaskList />
             </Menu.Item>
