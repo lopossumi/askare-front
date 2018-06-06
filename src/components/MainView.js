@@ -1,6 +1,6 @@
 import React from 'react'
 import Task from './Task'
-import { Grid, Segment } from 'semantic-ui-react'
+import { Grid, Segment, Message } from 'semantic-ui-react'
 import Header from './Header'
 import CreateTask from './CreateTask'
 import RemoveTaskList from './RemoveTaskList'
@@ -10,6 +10,9 @@ class MainView extends React.Component {
         return (
             <div>
                 <Header />
+                <Message hidden>
+                    Notification stub
+                </Message>
                 <Grid stackable columns='1'>
 
                     {this.props.taskLists && this.props.taskLists.map(taskList =>

@@ -9,10 +9,14 @@ import Footer from './components/Footer'
 import { connect } from 'react-redux'
 import { initialize } from './reducers/taskListReducer'
 import { login } from './reducers/userReducer'
+import { ping } from './services/ping'
 
 class App extends React.Component {
     componentDidMount = async () => {
         console.log('** App.js: componentdidmount starts')
+        // Ping the server immediately to start heroku dyno if it has stopped. This should lower response time.
+        ping()
+
         // On first request or refresh check the local storage for logged user info.
         const loggedUserJSON = window.localStorage.getItem('loggedUser')
         if (loggedUserJSON) {
@@ -60,5 +64,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    { initialize, login }
+    { initialize, login, ping }
 )(App)
