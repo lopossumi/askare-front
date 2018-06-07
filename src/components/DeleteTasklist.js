@@ -1,6 +1,5 @@
 import React from 'react'
 import { Icon, Button } from 'semantic-ui-react'
-import tasklistService from '../services/tasklist'
 import { deleteTasklist, recycleTasklist } from '../reducers/tasklistReducer'
 import { connect } from 'react-redux'
 
@@ -14,19 +13,10 @@ class DeleteTasklist extends React.Component {
     handleDelete = async (event) => {
         const id = this.state.tasklist
         this.props.deleteTasklist(id)
-
-        // const response = await tasklistService.remove(id)
-        // if (response.error) {
-        //     console.log(response.error)
-        // } else {
-        //     console.log(`tasklist (${id}) deleted from server. Delete local, too.`)
-        //     this.props.removeTasklist(id)
-        // }
     }
 
     handleRecycle = async (event) => {
         const id = this.state.tasklist
-        console.log(`trying to recycle task (${id})`)
         this.props.recycleTasklist(id)
     }
 

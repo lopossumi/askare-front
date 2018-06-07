@@ -2,8 +2,6 @@ import React from 'react'
 import Header from './Header'
 import { Table, Header as THeader } from 'semantic-ui-react'
 
-import Footer from './Footer'
-
 class UserInfo extends React.Component {
     render() {
         let user = this.props.user

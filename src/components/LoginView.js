@@ -17,6 +17,11 @@ class LoginView extends React.Component {
             connecting: false
         }
         this.handleInputChange = this.handleInputChange.bind(this)
+        this.autofill = this.autofill.bind(this)
+    }
+
+    autofill(username, password) {
+        this.setState({ username, password })
     }
 
     handleInputChange(event) { 
@@ -32,6 +37,8 @@ class LoginView extends React.Component {
                 username: this.state.username,
                 password: this.state.password
             })
+        this.setState({connecting: false})
+
         if (user.error) {
             console.log('loginView logged error:')
             console.log(user.error)
@@ -44,7 +51,6 @@ class LoginView extends React.Component {
             this.props.initialize(user)
             this.props.history.push('/') 
         }
-        this.setState({connecting: false})
     }
 
     render() {
@@ -53,7 +59,7 @@ class LoginView extends React.Component {
                 <Segment raised padded>
                     <h1><Icon name='list' />askare</h1>
                     <p>Revolutionizing to-do lists. Join today!</p>
-                    <CreateAccount />
+                    <CreateAccount autofill={this.autofill} />
                 </Segment>
 
                 <Form>
@@ -80,6 +86,7 @@ class LoginView extends React.Component {
 
                     <Button
                         type='submit'
+                        disabled={this.state.username===''}
                         color='blue'
                         icon='sign in'
                         content='Sign in'

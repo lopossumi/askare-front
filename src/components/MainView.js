@@ -15,7 +15,7 @@ class MainView extends React.Component {
                 </Message>
 
                     {this.props.tasklists && this.props.tasklists.map(tasklist =>
-                        <Container hidden={tasklist.recycled}>
+                        <Container key={tasklist._id}>
                             <Segment key={tasklist._id} color={tasklist.color || 'grey'}>
                                 <h1>{tasklist.title}<CreateTask tasklist={tasklist._id} /><DeleteTasklist tasklist={tasklist._id} /></h1>
                             </Segment>
@@ -27,8 +27,11 @@ class MainView extends React.Component {
                         </Container>
                     )}
 
-                    {this.props.tasklists==false && 
-                        <div />
+                    {this.props.tasklists.length===0 && 
+                        <Message info>
+                        <Message.Header>You do not have any task lists yet.</Message.Header>
+                        <p>Click on the <b>Create new list</b> button to start.</p>
+                        </Message>
                     }
 
                     {this.props.tasks.filter(x => !x.tasklist).map(item =>

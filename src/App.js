@@ -5,6 +5,8 @@ import MainView from './components/MainView'
 import LoginView from './components/LoginView'
 import UserInfo from './components/UserInfo'
 import Footer from './components/Footer'
+import Terms from './components/Terms'
+
 
 import { connect } from 'react-redux'
 import { initialize } from './reducers/tasklistReducer'
@@ -40,6 +42,8 @@ class App extends React.Component {
                             window.localStorage.getItem('loggedUser') 
                             ? <UserInfo user={this.props.user}/>
                             : <Redirect to='/login' />}/>
+
+                        <Route path='/terms' render={({history}) => <Terms history={history} />}/>
                         
                         <Route exact path='/' render={({history}) => 
                             window.localStorage.getItem('loggedUser') 

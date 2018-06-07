@@ -26,7 +26,7 @@ export const createTasklist = (tasklist) => {
 export const deleteTasklist = (id) => {
     return async (dispatch) => {
         console.log('said delete to service')
-        await tasklistService.delete(id)
+        await tasklistService.remove(id)
 
         dispatch({
             type: 'DELETE_TASKLIST',

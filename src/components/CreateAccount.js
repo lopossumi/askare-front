@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, Checkbox, Form, Modal, Icon, Message } from 'semantic-ui-react'
+import { Button, Container, Form, Modal, Icon, Message, Divider, Segment } from 'semantic-ui-react'
 import registerService from '../services/register'
+import Terms from './Terms'
 
 class CreateAccount extends React.Component {
     constructor(props) {
@@ -17,10 +18,15 @@ class CreateAccount extends React.Component {
             usernameError: false,
             passwordError: false,
             errorMessage: '',
+            success: false,
+            showTerms: false,
+            accepted: false
         }
         this.handleInputChange = this.handleInputChange.bind(this)
         this.clearErrors = this.clearErrors.bind(this)
-
+        this.toggleTerms = this.toggleTerms.bind(this)
+        this.acceptTerms = this.acceptTerms.bind(this)
+        this.declineTerms = this.declineTerms.bind(this)
     }
 
     handleInputChange(event) { 
@@ -32,8 +38,23 @@ class CreateAccount extends React.Component {
             usernameError: false,
             passwordError: false,
             errorMessage: '',
+            success: false
         })
     }
+
+    toggleTerms = () => {
+        console.log('togl', this.state.showTerms)
+        this.setState({ showTerms: !this.state.showTerms })
+    }
+    
+    acceptTerms = () => {
+        this.setState({ showTerms: false, accepted: true })
+    }
+
+    declineTerms = () => {
+        this.setState({ showTerms: false, accepted: false })
+    }
+
 
     handleSubmit = async (event) => {
         event.preventDefault()
@@ -52,17 +73,22 @@ class CreateAccount extends React.Component {
             const response = await registerService.register(newUser)
             if (response.error) {
                 switch(response.error){
-                    case 'Insufficient password length':
-                        this.setState({passwordError: true}); break
                     case 'Username already taken':
                         this.setState({usernameError: true}); break
+                    case 'Insufficient password length':
+                        this.setState({passwordError: true}); break
                     default:
                         console.log('Didnt get it.', response.error)
                 }
                 this.setState({errorMessage: response.error})
             } else {
                 console.log(`user ${response.username} created!`)
-                this.handleClose()
+                this.setState({success: true})
+                this.props.autofill(this.state.username, this.state.password1)
+
+                setTimeout(() => {
+                    this.handleClose()
+                }, 3000)
             }
         }
     }
@@ -138,15 +164,38 @@ class CreateAccount extends React.Component {
                             onChange={this.handleInputChange}
                             value={this.state.password2} />
 
-                        <Form.Field>
-                            <Checkbox label='I agree to any Terms and Conditions.' />
-                        </Form.Field>
+                        <Divider />
+                        
+                        {this.state.accepted ? <Icon color='green' name='check circle' size='large'/> : <Icon name='circle outline' size='large'/> }
+                        
+                        <Button onClick={this.toggleTerms}>Terms of Use and Privacy Statement</Button>
+                        
+                        <Container>
+                            <Divider hidden />
+                            <Segment hidden={!this.state.showTerms}>
+                                <Terms /> 
+                                <Divider hidden />
+                                <Button onClick={this.acceptTerms} color='blue'>
+                                    I understand and accept.
+                                </Button>
+                                <Button onClick={this.declineTerms}>
+                                    I do not accept.
+                                </Button>
+                            </Segment>
+                        </Container>
+
+                        <Divider />
 
                         <Message color='red' hidden={this.state.errorMessage === ''}>
                             {this.state.errorMessage}
                         </Message>
 
-                        <Button type='submit' color='green' onClick={this.handleSubmit}>Register</Button>
+                        <Message color='green' hidden={!this.state.success}>
+                            New account "{this.state.username}" created!
+                        </Message>
+
+
+                        <Button disabled={!this.state.accepted} type='submit' color='blue' onClick={this.handleSubmit}>Register</Button>
                         <Button onClick={this.handleClose}>Cancel</Button>
                     </Form>
                 </Modal.Content>
