@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu, Dropdown, Icon } from 'semantic-ui-react'
-import CreateTaskList from './CreateTaskList'
+import CreateTasklist from './CreateTasklist'
 import LogoutButton from './LogoutButton'
 import { Link } from 'react-router-dom'
 import Filter from './Filter'
@@ -14,7 +14,7 @@ const Header = () => (
             </Menu.Item>
 
             <Menu.Item>
-                <CreateTaskList />
+                <CreateTasklist />
             </Menu.Item>
 
             <Menu.Item>
