@@ -2,7 +2,9 @@ import { Divider, Transition } from 'semantic-ui-react'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import PriorityIcon from './PriorityIcon'
-import RemoveTask from './RemoveTask';
+import RemoveTask from './RemoveTask'
+import EditTask from './EditTask'
+
 
 class TaskDetails extends React.Component {
     detailStyle = {
@@ -18,6 +20,7 @@ class TaskDetails extends React.Component {
                 <p>Priority: <PriorityIcon priority={task.priority} /></p>
                 <p>Status: {task.status}</p>
                 <RemoveTask taskId={task._id}/>
+                <EditTask task={task} />
             </div>
             </Transition>
         )

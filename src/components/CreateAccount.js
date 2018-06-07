@@ -112,7 +112,8 @@ class CreateAccount extends React.Component {
                         <Form.Field>
                             <Checkbox label='I agree to any Terms and Conditions.' />
                         </Form.Field>
-                        <Button type='submit' onClick={this.handleSubmit}>Submit</Button>
+                        <Button type='submit' color='green' onClick={this.handleSubmit}>Register</Button>
+                        <Button onClick={this.handleClose}>Cancel</Button>
                     </Form>
                 </Modal.Content>
             </Modal>

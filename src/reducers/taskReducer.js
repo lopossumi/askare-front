@@ -5,8 +5,9 @@ const taskReducer = (store = [], action) => {
         case 'CREATE_TASK':
             return [...store, action.task]
         case 'REMOVE_TASK':
-            console.log('action id', action.id)
             return store.filter(x => x._id !== action.id)
+        case 'EDIT_TASK':
+            return store.map(x => x._id !== action.task._id ? x : action.task)
         default:
             return store
     }
@@ -16,6 +17,13 @@ export const removeTask = (id) => {
     return {
         type: 'REMOVE_TASK',
         id
+    }
+}
+
+export const editTask = (task) => {
+    return {
+        type: 'EDIT_TASK',
+        task
     }
 }
 

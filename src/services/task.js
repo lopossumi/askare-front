@@ -46,9 +46,24 @@ const create = async (task) => {
     }
 }
 
+const edit = async (task) => {
+    const config = {
+        headers: { 'Authorization': token }
+    }
+
+    try {
+        const id = task._id
+        const response = await axios.put(url+`/${id}`, {...task}, config)
+        return response.data
+    } catch (error) {
+        return error.response.data
+    }
+}
+
 export default { 
     getAll, 
     setToken,
     create,
-    remove
+    remove,
+    edit
 }
