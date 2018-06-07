@@ -29,3 +29,4 @@ React front-end solution for a HY-CS project course TKT21010 (work in progress).
 | 3.6.2018  | 2.0h  | User info, bugfixes
 | 3.6.2018  | 1.0h  | Removing task lists
 | 4.6.2018  | 0.5h  | Adding home button to navbar; testing with a phone
+| 7.6.2018  | 1.5h  | Editing tasks (dialogue, service, reducer)
