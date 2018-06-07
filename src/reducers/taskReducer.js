@@ -8,6 +8,8 @@ const taskReducer = (store = [], action) => {
             return store.filter(x => x._id !== action.id)
         case 'EDIT_TASK':
             return store.map(x => x._id !== action.task._id ? x : action.task)
+        case 'REMOVE_TASKLIST':
+            return store.filter(x => x.tasklist !== action.id)
         default:
             return store
     }
