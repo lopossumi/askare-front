@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Checkbox, Form, Modal, Icon } from 'semantic-ui-react'
+import { Button, Checkbox, Form, Modal, Icon, Message } from 'semantic-ui-react'
 import registerService from '../services/register'
 
 class CreateAccount extends React.Component {
@@ -13,17 +13,34 @@ class CreateAccount extends React.Component {
             email: '',
             password1: '',
             password2: '',
+
+            usernameError: false,
+            passwordError: false,
+            errorMessage: '',
         }
         this.handleInputChange = this.handleInputChange.bind(this)
+        this.clearErrors = this.clearErrors.bind(this)
+
     }
 
     handleInputChange(event) { 
         this.setState({ [event.target.name]: event.target.value })
     }
 
+    clearErrors() {
+        this.setState({
+            usernameError: false,
+            passwordError: false,
+            errorMessage: '',
+        })
+    }
+
     handleSubmit = async (event) => {
         event.preventDefault()
-        if (this.state.password1 === this.state.password2) {
+        this.clearErrors()
+        if (this.state.password1 !== this.state.password2) {
+            this.setState({passwordError: true, errorMessage: 'Passwords do not match.'})
+        } else {
             const newUser = {
                 username: this.state.username,
                 firstname: this.state.firstname,
@@ -34,16 +51,27 @@ class CreateAccount extends React.Component {
 
             const response = await registerService.register(newUser)
             if (response.error) {
-                console.log(response.error)
+                switch(response.error){
+                    case 'Insufficient password length':
+                        this.setState({passwordError: true}); break
+                    case 'Username already taken':
+                        this.setState({usernameError: true}); break
+                    default:
+                        console.log('Didnt get it.', response.error)
+                }
+                this.setState({errorMessage: response.error})
             } else {
-                console.log(`user ${response.username} created! close modal and show message.`)
+                console.log(`user ${response.username} created!`)
                 this.handleClose()
             }
         }
     }
 
     handleOpen = () => this.setState({ modalOpen: true })
-    handleClose = () => this.setState({ modalOpen: false })
+    handleClose = () => {
+        this.setState({ modalOpen: false })
+        this.clearErrors()
+    }
 
     render() {
         return (
@@ -62,14 +90,13 @@ class CreateAccount extends React.Component {
                 <Modal.Header color='blue'><Icon name='user' />Create a new account</Modal.Header>
                 <Modal.Content>
                     <Form>
-                        <Form.Field>
-                            <label>Username</label>
-                            <input
-                                placeholder='Pick a username'
-                                name='username'
-                                onChange={this.handleInputChange}
-                                value={this.state.username} />
-                        </Form.Field>
+                        <Form.Input
+                            error={this.state.usernameError}
+                            label='Username'
+                            placeholder='Pick a username'
+                            name='username'
+                            onChange={this.handleInputChange}
+                            value={this.state.username} />
 
                         <Form.Group widths='equal'>
                             <Form.Input fluid
@@ -95,6 +122,7 @@ class CreateAccount extends React.Component {
                             value={this.state.email} />
 
                         <Form.Input
+                            error={this.state.passwordError}
                             label='Enter password'
                             type='password'
                             placeholder='Create a password'
@@ -102,6 +130,7 @@ class CreateAccount extends React.Component {
                             onChange={this.handleInputChange}
                             value={this.state.password1} />
                         <Form.Input
+                            error={this.state.passwordError}
                             label='Repeat password'
                             type='password'
                             placeholder='Repeat password'
@@ -112,6 +141,11 @@ class CreateAccount extends React.Component {
                         <Form.Field>
                             <Checkbox label='I agree to any Terms and Conditions.' />
                         </Form.Field>
+
+                        <Message color='red' hidden={this.state.errorMessage === ''}>
+                            {this.state.errorMessage}
+                        </Message>
+
                         <Button type='submit' color='green' onClick={this.handleSubmit}>Register</Button>
                         <Button onClick={this.handleClose}>Cancel</Button>
                     </Form>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Container, Segment, Icon } from 'semantic-ui-react'
+import { Button, Form, Container, Segment, Icon, Message } from 'semantic-ui-react'
 import CreateAccount from './CreateAccount'
 import loginService from '../services/login'
 import { connect } from 'react-redux'
@@ -11,7 +11,9 @@ class LoginView extends React.Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+
+            errorMessage: ''
         }
         this.handleInputChange = this.handleInputChange.bind(this)
     }
@@ -32,6 +34,7 @@ class LoginView extends React.Component {
         if (user.error) {
             console.log('loginView logged error:')
             console.log(user.error)
+            this.setState({errorMessage: user.error})
         } else if (!user.username) {
             console.log('Invalid response from server. User not logged in.')
         } else {
@@ -68,6 +71,10 @@ class LoginView extends React.Component {
                             value={this.state.password}
                             onChange={this.handleInputChange}/>
                     </Form.Group>
+
+                    <Message color='red' hidden={this.state.errorMessage===''}>
+                        {this.state.errorMessage}
+                    </Message>
 
                     <Button
                         type='submit'

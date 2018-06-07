@@ -28,6 +28,11 @@ class MainView extends React.Component {
                                     task={item} />)}
                         </Grid.Column>
                     )}
+
+                    {this.props.tasks.filter(x => !x.tasklist).map(item =>
+                        <Task
+                            key={item._id}
+                            task={item} />)}
                 </Grid>
 
             </div>

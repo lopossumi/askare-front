@@ -3,6 +3,8 @@ import { Menu, Dropdown, Icon } from 'semantic-ui-react'
 import CreateTaskList from './CreateTaskList'
 import LogoutButton from './LogoutButton'
 import { Link } from 'react-router-dom'
+import Filter from './Filter'
+
 
 const Header = () => (
     <div>
@@ -14,6 +16,11 @@ const Header = () => (
             <Menu.Item>
                 <CreateTaskList />
             </Menu.Item>
+
+            <Menu.Item>
+                <Filter />
+            </Menu.Item>
+
 
             <Menu.Menu position='right'>
                 <Dropdown item text='My account'>
