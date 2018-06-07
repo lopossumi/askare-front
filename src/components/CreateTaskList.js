@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Form, Modal, Icon, Dropdown, Divider } from 'semantic-ui-react'
-import taskListService from '../services/taskList'
-import { createTaskList } from '../reducers/taskListReducer'
+import tasklistService from '../services/tasklist'
+import { createTasklist } from '../reducers/tasklistReducer'
 import { connect } from 'react-redux'
 
 
@@ -9,7 +9,7 @@ const colorOptions = [
     'green', 'red', 'blue', 'pink'
 ].map(x => ({text: x, value: x}))
 
-class CreateTaskList extends React.Component {
+class CreateTasklist extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,17 +31,17 @@ class CreateTaskList extends React.Component {
 
     handleSubmit = async (event) => {
         event.preventDefault()
-        const newTaskList = {
+        const newTasklist = {
             title: this.state.title,
             color: this.state.color
         }
 
-        const response = await taskListService.create(newTaskList)
+        const response = await tasklistService.create(newTasklist)
         if (response.error) {
             console.log(response.error)
         } else {
-            console.log(`taskList ${response.title} (${response._id}) created! close modal and show message.`)
-            this.props.createTaskList(response)
+            console.log(`tasklist ${response.title} (${response._id}) created! close modal and show message.`)
+            this.props.createTasklist(response)
             this.handleClose()
         }
     }
@@ -92,8 +92,8 @@ class CreateTaskList extends React.Component {
     }
 }
 
-//export default CreateTaskList
+//export default CreateTasklist
 export default connect(
     null,
-    { createTaskList }
-)(CreateTaskList)
+    { createTasklist }
+)(CreateTasklist)

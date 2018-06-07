@@ -1,12 +1,9 @@
 import React from 'react'
-import { Button, Form, Modal, Icon, Dropdown, Divider, TextArea } from 'semantic-ui-react'
+import { Button, Form, Modal, Icon, Divider, TextArea, Message } from 'semantic-ui-react'
 import taskService from '../services/task'
 import { createTask } from '../reducers/taskReducer'
 import { connect } from 'react-redux'
-
-const colorOptions = [
-    'green', 'red', 'blue', 'pink'
-].map(x => ({text: x, value: x}))
+import colorOptions from './options/colorOptions'
 
 class CreateTask extends React.Component {
     constructor(props) {
@@ -17,55 +14,62 @@ class CreateTask extends React.Component {
             content: '',
             priority: '',
             status: '',
-            color: ''
+            color: '',
+            errorMessage: ''
         }
         this.handleInputChange = this.handleInputChange.bind(this)
-        this.handleDropdown = this.handleDropdown.bind(this)
+        this.handleColor = this.handleColor.bind(this)
     }
 
-    handleInputChange(event) { 
+    handleInputChange(event) {
         this.setState({ [event.target.name]: event.target.value })
         console.log(event)
     }
 
-    handleDropdown(event, {value}) { 
+    handleColor(event, { value }) {
         this.setState({ color: value })
     }
 
     handleSubmit = async (event) => {
         event.preventDefault()
-        const newTask = {
-            title: this.state.title,
-            tasklist: this.state.tasklist,
-            content: this.state.content,
-            priority: this.state.priority,
-            status: this.state.status,
-            color: this.state.color,
-        }
 
-        const response = await taskService.create(newTask)
-        if (response.error) {
-            console.log(response.error)
+        if (this.state.title === '') {
+            this.setState({errorMessage: 'Title cannot be empty.'})
         } else {
-            console.log(`task ${response.title} added to list ${this.state.tasklist}! close modal and show message.`)
-            console.log(response)
-            
-            // Add task to local store
-            this.props.createTask(response)
 
-            // Close modal
-            this.handleClose()
+            const newTask = {
+                title: this.state.title,
+                tasklist: this.state.tasklist,
+                content: this.state.content,
+                priority: this.state.priority,
+                status: this.state.status,
+                color: this.state.color,
+            }
+
+            const response = await taskService.create(newTask)
+            if (response.error) {
+                console.log(response.error)
+            } else {
+                console.log(`task ${response.title} added to list ${this.state.tasklist}! close modal and show message.`)
+                console.log(response)
+
+                // Add task to local store
+                this.props.createTask(response)
+
+                // Close modal
+                this.handleClose()
+            }
         }
     }
 
     handleOpen = () => this.setState({ modalOpen: true })
-    handleClose = () => this.setState({ 
+    handleClose = () => this.setState({
         modalOpen: false,
         title: '',
         content: '',
         priority: '',
         status: '',
-        color: ''    
+        color: ''
     })
 
     render() {
@@ -78,7 +82,7 @@ class CreateTask extends React.Component {
                             <Icon name='plus' />
                         </Button.Content>
                     </Button>
-              
+
                     // <Button
                     //     color='green'
                     //     icon='plus'
@@ -114,11 +118,22 @@ class CreateTask extends React.Component {
                         <Form.Field>
                             Select label color: <b>{this.state.color}</b>
                         </Form.Field>
-                      
-                        <Dropdown placeholder='Pick a color' fluid selection options={colorOptions} onChange={this.handleDropdown}/>
 
-                        <Divider />    
-                      
+                        {colorOptions.map(color =>
+                            <Button
+                                circular
+                                key={color.value}
+                                color={color.value}
+                                value={color.value}
+                                onClick={this.handleColor} />
+                        )}
+
+                        <Divider />
+
+                        <Message color='red' hidden={this.state.errorMessage === ''}>
+                            {this.state.errorMessage}
+                        </Message>
+
                         <Button type='submit' color='blue' onClick={this.handleSubmit}>Create</Button>
                         <Button onClick={this.handleClose}>Cancel</Button>
                     </Form>

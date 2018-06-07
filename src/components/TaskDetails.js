@@ -15,7 +15,9 @@ class TaskDetails extends React.Component {
         const task = this.props.task
         return (
             <Transition visible={this.props.show} animation='slide down' duration={300}>
-            <div style={this.detailStyle}><ReactMarkdown source={task.content} />
+            <div style={this.detailStyle}>
+                <Divider />
+                <ReactMarkdown source={task.content} />
                 <Divider />
                 <p>Priority: <PriorityIcon priority={task.priority} /></p>
                 <p>Status: {task.status}</p>

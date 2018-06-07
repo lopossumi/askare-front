@@ -13,17 +13,16 @@ class Task extends React.Component {
 
     toggleDetails = () => {
         this.setState({ showDetails: !this.state.showDetails })
-        console.log('details is', this.state.showDetails)
     }
 
     render() {
         return (
             <Container>
                 <Segment onClick={this.toggleDetails}>
-                    <h3>{this.props.task.color 
+                    {this.props.task.color 
                         ? <Label color={this.props.task.color || 'grey'} ribbon='right'/> 
                         : <Label ribbon='right'/>}
-                    {this.props.task.title}</h3>
+                    {this.props.task.title}
                     <TaskDetails task={this.props.task} show={this.state.showDetails}/>
                 </Segment>
             </Container>

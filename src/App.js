@@ -7,7 +7,7 @@ import UserInfo from './components/UserInfo'
 import Footer from './components/Footer'
 
 import { connect } from 'react-redux'
-import { initialize } from './reducers/taskListReducer'
+import { initialize } from './reducers/tasklistReducer'
 import { login } from './reducers/userReducer'
 import { ping } from './services/ping'
 
@@ -43,7 +43,7 @@ class App extends React.Component {
                         
                         <Route exact path='/' render={({history}) => 
                             window.localStorage.getItem('loggedUser') 
-                            ? <MainView history={history} taskLists={this.props.taskLists} tasks={this.props.tasks}/> 
+                            ? <MainView history={history} tasklists={this.props.tasklists} tasks={this.props.tasks}/> 
                             : <Redirect to='/login' />}/>
                     </div>
                 </Router>
@@ -56,7 +56,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        taskLists: state.taskLists,
+        tasklists: state.tasklists,
         tasks: state.tasks,
         user: state.user
     }

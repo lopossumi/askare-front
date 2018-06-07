@@ -1,47 +1,62 @@
-import taskListService from '../services/taskList'
+import tasklistService from '../services/tasklist'
 import taskService from '../services/task'
 
-const taskListReducer = (store = [], action) => {
+const tasklistReducer = (store = [], action) => {
     switch (action.type) {
         case 'INIT':
-            return action.taskLists
+            return action.tasklists
         case 'CREATE_TASKLIST':
-            return [action.taskList, ...store]
-        case 'REMOVE_TASKLIST':
+            return [action.tasklist, ...store]
+        case 'DELETE_TASKLIST':
             return store.filter(x => x._id !== action.id)
+        case 'RECYCLE_TASKLIST':
+            return store.map(x => (x._id !== action.id) ? x : { ...x, recycled: true })
         default:
             return store
     }
 }
 
-export const createTaskList = (taskList) => {
+export const createTasklist = (tasklist) => {
     return {
         type: 'CREATE_TASKLIST',
-        taskList
+        tasklist
     }
 }
 
-export const removeTaskList = (id) => {
+export const deleteTasklist = (id) => {
+    return async (dispatch) => {
+        console.log('said delete to service')
+        await tasklistService.delete(id)
+
+        dispatch({
+            type: 'DELETE_TASKLIST',
+            id
+        })
+    }
+}
+
+export const recycleTasklist = (id) => {
     return {
-        type: 'REMOVE_TASKLIST',
+        type: 'RECYCLE_TASKLIST',
         id
     }
 }
 
+
 export const initialize = (user) => {
     return async (dispatch) => {
-        taskListService.setToken(user.token)
+        tasklistService.setToken(user.token)
         taskService.setToken(user.token)
 
-        const taskLists = await taskListService.getAll()
+        const tasklists = await tasklistService.getAll()
         const tasks = await taskService.getAll()
 
         dispatch({
             type: 'INIT',
-            taskLists,
+            tasklists,
             tasks
         })
     }
 }
 
-export default taskListReducer
+export default tasklistReducer

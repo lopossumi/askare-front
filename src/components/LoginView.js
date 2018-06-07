@@ -1,10 +1,10 @@
 import React from 'react'
-import { Button, Form, Container, Segment, Icon, Message } from 'semantic-ui-react'
+import { Button, Form, Container, Segment, Icon, Message, Loader } from 'semantic-ui-react'
 import CreateAccount from './CreateAccount'
 import loginService from '../services/login'
 import { connect } from 'react-redux'
 import { login } from '../reducers/userReducer'
-import { initialize } from '../reducers/taskListReducer'
+import { initialize } from '../reducers/tasklistReducer'
 
 class LoginView extends React.Component {
     constructor(props) {
@@ -13,7 +13,8 @@ class LoginView extends React.Component {
             username: '',
             password: '',
 
-            errorMessage: ''
+            errorMessage: '',
+            connecting: false
         }
         this.handleInputChange = this.handleInputChange.bind(this)
     }
@@ -25,7 +26,7 @@ class LoginView extends React.Component {
     handleSubmit = async (event) => {
         event.preventDefault()
         console.log('attempting login:')
-
+        this.setState({connecting: true})
         const user = await loginService
             .login({
                 username: this.state.username,
@@ -43,6 +44,7 @@ class LoginView extends React.Component {
             this.props.initialize(user)
             this.props.history.push('/') 
         }
+        this.setState({connecting: false})
     }
 
     render() {
@@ -82,8 +84,10 @@ class LoginView extends React.Component {
                         icon='sign in'
                         content='Sign in'
                         labelPosition='left' 
-                        onClick={this.handleSubmit}/>
+                        onClick={this.handleSubmit} />
                 </Form>
+                
+                <Loader active={this.state.connecting}>Connecting...</Loader>
             </Container>
         )
     }
