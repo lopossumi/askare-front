@@ -18,13 +18,13 @@ const getAll = () => {
     return request.then(response => response.data)
 }
 
-const create = async (taskList) => {
+const create = async (tasklist) => {
     const config = {
         headers: { 'Authorization': token }
     }
 
     try {
-        const response = await axios.post(url, {...taskList}, config)
+        const response = await axios.post(url, {...tasklist}, config)
         return response.data
     } catch (error) {
         return error.response.data
