@@ -3,11 +3,7 @@ import { Button, Form, Modal, Icon, Dropdown, Divider } from 'semantic-ui-react'
 import tasklistService from '../services/tasklist'
 import { createTasklist } from '../reducers/tasklistReducer'
 import { connect } from 'react-redux'
-
-
-const colorOptions = [
-    'green', 'red', 'blue', 'pink'
-].map(x => ({text: x, value: x}))
+import colorOptions from './options/colorOptions'
 
 class CreateTasklist extends React.Component {
     constructor(props) {
@@ -78,10 +74,17 @@ class CreateTasklist extends React.Component {
                         <Form.Field>
                             Select label color: <b>{this.state.color}</b>
                         </Form.Field>
-                      
-                        <Dropdown placeholder='Pick a color' fluid selection options={colorOptions} onChange={this.handleDropdown}/>
 
-                        <Divider />    
+                        {colorOptions.map(color =>
+                            <Button
+                                circular
+                                key={color.value}
+                                color={color.value}
+                                value={color.value}
+                                onClick={this.handleColor} />
+                        )}
+
+                        <Divider />
                       
                         <Button type='submit' color='blue' onClick={this.handleSubmit}>Create</Button>
                         <Button onClick={this.handleClose}>Cancel</Button>

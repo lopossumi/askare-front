@@ -109,7 +109,7 @@ class CreateTask extends React.Component {
                             <label>Content</label>
                             <TextArea
                                 rows='10'
-                                placeholder='Write some content'
+                                placeholder='Write some Markdown'
                                 name='content'
                                 onChange={this.handleInputChange}
                                 value={this.state.content} />
