@@ -3,7 +3,7 @@ React front-end solution for a HY-CS project course TKT21010 (work in progress).
 
 ## Technologies
 Askare is built with MERN stack: (or MMERSRN, if you want more letters included)
-* [MongoDB](https://www.mongodb.com/) deployed (with [mongoose](http://mongoosejs.com/))
+* [MongoDB](https://www.mongodb.com/) (wrapped with [mongoose](http://mongoosejs.com/))
 * [Express.js](https://expressjs.com/) as the web application framework
 * [React.js](https://reactjs.org/) for front-end (with [Semantic UI](https://react.semantic-ui.com))
 * [Redux](https://redux.js.org/) for client-side state container
