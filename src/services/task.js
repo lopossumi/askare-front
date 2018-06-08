@@ -8,25 +8,18 @@ const setToken = (newToken) => {
     console.log('token was set to tasks')
 }
 
-const getAll = () => {
-    const config = {
-        headers: { 'Authorization': token }
-    }
+const config = () => {
+    return({ headers: { 'Authorization': token }})
+}
 
-    console.log('task service: trying to get all tasks')
-    console.log('config:')
-    console.log(config)
-    const request = axios.get(url, config)
+const getAll = () => {
+    const request = axios.get(url, config())
     return request.then(response => response.data)
 }
 
 const remove = async (id) => {
-    const config = {
-        headers: { 'Authorization': token }
-    }
-
     try {
-        const response = await axios.delete(url+`/${id}`, config)
+        const response = await axios.delete(url+`/${id}`, config())
         return response.data
     } catch (error) {
         return error.response.data
@@ -34,12 +27,8 @@ const remove = async (id) => {
 }
 
 const create = async (task) => {
-    const config = {
-        headers: { 'Authorization': token }
-    }
-
     try {
-        const response = await axios.post(url, {...task}, config)
+        const response = await axios.post(url, {...task}, config())
         return response.data
     } catch (error) {
         return error.response.data
@@ -47,13 +36,9 @@ const create = async (task) => {
 }
 
 const edit = async (task) => {
-    const config = {
-        headers: { 'Authorization': token }
-    }
-
     try {
         const id = task._id
-        const response = await axios.put(url+`/${id}`, {...task}, config)
+        const response = await axios.put(url+`/${id}`, {...task}, config())
         return response.data
     } catch (error) {
         return error.response.data

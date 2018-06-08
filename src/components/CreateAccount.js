@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Container, Form, Modal, Icon, Message, Divider, Segment } from 'semantic-ui-react'
+import { Button, Container, Form, Modal, Icon, Message, Divider, Segment, Checkbox } from 'semantic-ui-react'
 import registerService from '../services/register'
 import Terms from './Terms'
 
@@ -21,16 +21,18 @@ class CreateAccount extends React.Component {
             errorMessage: '',
             success: false,
             showTerms: false,
-            accepted: false
+            accepted: false,
+            showInSearch: false
         }
         this.handleInputChange = this.handleInputChange.bind(this)
         this.clearErrors = this.clearErrors.bind(this)
-        this.toggleTerms = this.toggleTerms.bind(this)
-        this.acceptTerms = this.acceptTerms.bind(this)
-        this.declineTerms = this.declineTerms.bind(this)
+        //this.toggleTerms = this.toggleTerms.bind(this)
+        //this.acceptTerms = this.acceptTerms.bind(this)
+        //this.declineTerms = this.declineTerms.bind(this)
     }
 
     handleInputChange(event) { 
+        console.log(event.target.checked)
         this.setState({ [event.target.name]: event.target.value })
     }
 
@@ -44,8 +46,11 @@ class CreateAccount extends React.Component {
         })
     }
 
+    toggleShowInSearch = () => {
+        this.setState({ showInSearch: !this.state.showInSearch })
+    }
+
     toggleTerms = () => {
-        console.log('togl', this.state.showTerms)
         this.setState({ showTerms: !this.state.showTerms })
     }
     
@@ -70,30 +75,36 @@ class CreateAccount extends React.Component {
                 lastname: this.state.lastname,
                 email: this.state.email,
                 password: this.state.password1,
+                showInSearch: this.state.showInSearch
             }
 
-            const response = await registerService.register(newUser)
-            if (response.error) {
-                const invalidField = response.error.split(' ')[1]
-                switch(invalidField){
-                    case 'username.':
-                        this.setState({usernameError: true}); break
-                    case 'email.':
-                        this.setState({emailError: true}); break
-                    case 'password.':
-                        this.setState({passwordError: true}); break
-                    default:
-                        console.log('Didnt get it.', response.error)
-                }
-                this.setState({errorMessage: response.error})
-            } else {
-                console.log(`user ${response.username} created!`)
-                this.setState({success: true})
-                this.props.autofill(this.state.username, this.state.password1)
+            try { 
+                const response = await registerService.register(newUser)
 
-                setTimeout(() => {
-                    this.handleClose()
-                }, 3000)
+                if (response.error) {
+                    const invalidField = response.error.split(' ')[1]
+                    switch(invalidField){
+                        case 'username.':
+                            this.setState({usernameError: true}); break
+                        case 'email.':
+                            this.setState({emailError: true}); break
+                        case 'password.':
+                            this.setState({passwordError: true}); break
+                        default:
+                            console.log(response.error)
+                    }
+                    this.setState({errorMessage: response.error})
+                } else {
+                    console.log(`user ${response.username} created!`)
+                    this.setState({success: true})
+                    this.props.autofill(this.state.username, this.state.password1)
+    
+                    setTimeout(() => {
+                        this.handleClose()
+                    }, 3000)
+                }    
+            } catch (error) {
+                this.setState({errorMessage: 'Server error.'})
             }
         }
     }
@@ -171,6 +182,12 @@ class CreateAccount extends React.Component {
                             value={this.state.password2} />
 
                         <Divider />
+                        <Checkbox
+                            label='Show me in user search'
+                            onChange={this.toggleShowInSearch}
+                            checked={this.state.showInSearch} />
+                        <Divider />
+
                         
                         {this.state.accepted ? <Icon color='green' name='check circle' size='large'/> : <Icon name='circle outline' size='large'/> }
                         

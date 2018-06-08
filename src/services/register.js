@@ -6,7 +6,8 @@ const register = async (user) => {
         const response = await axios.post(url, user)
         return response.data
     } catch (error) {
-        return error.response.data
+        console.log(error.response)
+        return {...error.response, error: error.response.statusText}
     }
 }
 

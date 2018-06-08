@@ -4,6 +4,7 @@ import tasklistService from '../services/tasklist'
 import { createTasklist } from '../reducers/tasklistReducer'
 import { connect } from 'react-redux'
 import colorOptions from './options/colorOptions'
+import { withRouter } from "react-router-dom";
 
 class CreateTasklist extends React.Component {
     constructor(props) {
@@ -39,11 +40,17 @@ class CreateTasklist extends React.Component {
             console.log(`tasklist ${response.title} (${response._id}) created! close modal and show message.`)
             this.props.createTasklist(response)
             this.handleClose()
+            this.props.history.push('/')
         }
     }
 
     handleOpen = () => this.setState({ modalOpen: true })
-    handleClose = () => this.setState({ modalOpen: false })
+
+    handleClose = () => this.setState({
+        modalOpen: false,
+        title: '',
+        color: ''
+    })
 
     render() {
         return (
@@ -95,8 +102,7 @@ class CreateTasklist extends React.Component {
     }
 }
 
-//export default CreateTasklist
-export default connect(
+export default withRouter(connect(
     null,
     { createTasklist }
-)(CreateTasklist)
+)(CreateTasklist))

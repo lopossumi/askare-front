@@ -8,23 +8,18 @@ const setToken = (newToken) => {
     console.log('token was set to tasklists')
 }
 
-const getAll = () => {
-    const config = {
-        headers: { 'Authorization': token }
-    }
+const config = () => {
+    return({ headers: { 'Authorization': token }})
+}
 
-    console.log('tasklist service: trying to get all lists')
-    const request = axios.get(url, config)
+const getAll = () => {
+    const request = axios.get(url, config())
     return request.then(response => response.data)
 }
 
 const create = async (tasklist) => {
-    const config = {
-        headers: { 'Authorization': token }
-    }
-
     try {
-        const response = await axios.post(url, {...tasklist}, config)
+        const response = await axios.post(url, {...tasklist}, config())
         return response.data
     } catch (error) {
         return error.response.data
@@ -32,12 +27,8 @@ const create = async (tasklist) => {
 }
 
 const remove = async (id) => {
-    const config = {
-        headers: { 'Authorization': token }
-    }
-
     try {
-        const response = await axios.delete(url+`/${id}`, config)
+        const response = await axios.delete(url+`/${id}`, config())
         return response.data
     } catch (error) {
         return error.response.data
