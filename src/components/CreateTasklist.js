@@ -13,7 +13,7 @@ class CreateTasklist extends React.Component {
             color: ''
         }
         this.handleInputChange = this.handleInputChange.bind(this)
-        this.handleDropdown = this.handleDropdown.bind(this)
+        this.handleColor = this.handleColor.bind(this)
     }
 
     handleInputChange(event) { 
@@ -21,7 +21,7 @@ class CreateTasklist extends React.Component {
         console.log(event)
     }
 
-    handleDropdown(event, {value}) { 
+    handleColor(event, {value}) { 
         this.setState({ color: value })
     }
 

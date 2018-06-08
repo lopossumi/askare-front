@@ -6,7 +6,7 @@ const tasklistReducer = (store = [], action) => {
         case 'INIT':
             return action.tasklists
         case 'CREATE_TASKLIST':
-            return [action.tasklist, ...store]
+            return [...store, action.tasklist]
         case 'DELETE_TASKLIST':
             return store.filter(x => x._id !== action.id)
         case 'RECYCLE_TASKLIST':

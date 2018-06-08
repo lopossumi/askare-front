@@ -40,11 +40,9 @@ class LoginView extends React.Component {
         this.setState({connecting: false})
 
         if (user.error) {
-            console.log('loginView logged error:')
-            console.log(user.error)
             this.setState({errorMessage: user.error})
         } else if (!user.username) {
-            console.log('Invalid response from server. User not logged in.')
+            this.setState({errorMessage: 'Invalid response from server. User not logged in.'})
         } else {
             window.localStorage.setItem('loggedUser', JSON.stringify(user))
             this.props.login(user)
