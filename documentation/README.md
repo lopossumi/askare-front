@@ -29,3 +29,4 @@
 | 7.6.2018  | 1.5h  | Editing tasks (dialogue, service, reducer)
 | 7.6.2018  | 4.0h  | Refactoring, validation, error handling, GUI improvements
 | 7.6.2018  | 2.0h  | Registration; terms of use and privacy
+| 7.6.2018  | 0.5h  | Deployment bugfixes and color picker
