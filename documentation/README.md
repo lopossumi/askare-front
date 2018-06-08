@@ -30,4 +30,6 @@
 | 7.6.2018  | 4.0h  | Refactoring, validation, error handling, GUI improvements
 | 7.6.2018  | 2.0h  | Registration; terms of use and privacy
 | 7.6.2018  | 0.5h  | Deployment bugfixes and color picker
-| 7.6.2018  | 1.0h  | Identicons & new user account validation; back to Node 8
+| 8.6.2018  | 1.0h  | Identicons & new user account validation; back to Node 8
+| 8.6.2018  | 0.5h  | Fixed identicon bug; minor UI improvements
+
