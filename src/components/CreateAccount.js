@@ -17,6 +17,7 @@ class CreateAccount extends React.Component {
 
             usernameError: false,
             passwordError: false,
+            emailError: false,
             errorMessage: '',
             success: false,
             showTerms: false,
@@ -37,6 +38,7 @@ class CreateAccount extends React.Component {
         this.setState({
             usernameError: false,
             passwordError: false,
+            emailError: false,
             errorMessage: '',
             success: false
         })
@@ -72,10 +74,13 @@ class CreateAccount extends React.Component {
 
             const response = await registerService.register(newUser)
             if (response.error) {
-                switch(response.error){
-                    case 'Username already taken':
+                const invalidField = response.error.split(' ')[1]
+                switch(invalidField){
+                    case 'username.':
                         this.setState({usernameError: true}); break
-                    case 'Insufficient password length':
+                    case 'email.':
+                        this.setState({emailError: true}); break
+                    case 'password.':
                         this.setState({passwordError: true}); break
                     default:
                         console.log('Didnt get it.', response.error)
@@ -140,6 +145,7 @@ class CreateAccount extends React.Component {
                         </Form.Group>
 
                         <Form.Input
+                            error={this.state.emailError}
                             label='E-mail'
                             type='email'
                             placeholder='you@example.com'

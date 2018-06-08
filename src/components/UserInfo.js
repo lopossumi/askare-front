@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import { Table, Header as THeader } from 'semantic-ui-react'
+import 'jdenticon'
 
 class UserInfo extends React.Component {
     render() {
@@ -17,13 +18,15 @@ class UserInfo extends React.Component {
             <div>
                 <Header />
                 <h1>My account information</h1>
-                <Table>
+                <Table collapsing>
                     <Table.Body>
                         <Table.Row>
                             <Table.Cell>
+                                <svg width="80" height="80" data-jdenticon-value={user.username}></svg>
+                            </Table.Cell>
+                            <Table.Cell>
                                 <THeader>
-                                    <THeader.Content>
-                                        {user.firstname} {user.lastname}
+                                    <THeader.Content>{user.firstname} {user.lastname}
                                         <THeader.Subheader>@{user.username}</THeader.Subheader>
                                     </THeader.Content>
                                 </THeader>
