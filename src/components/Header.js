@@ -8,7 +8,7 @@ import Filter from './Filter'
 
 const Header = () => (
     <div>
-        <Menu>
+        <Menu stackable>
             <Menu.Item as={Link} to='/'>
                 <Icon name='list' /> askare
             </Menu.Item>

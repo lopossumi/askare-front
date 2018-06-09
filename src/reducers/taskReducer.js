@@ -1,3 +1,5 @@
+import taskService from '../services/task'
+
 const taskReducer = (store = [], action) => {
     switch (action.type) {
         case 'INIT':
@@ -23,17 +25,29 @@ export const removeTask = (id) => {
 }
 
 export const editTask = (task) => {
-    return {
-        type: 'EDIT_TASK',
-        task
+    return async (dispatch) => {
+        const editedTask = await taskService.edit(task)
+
+        dispatch({
+            type: 'EDIT_TASK',
+            task: editedTask
+        })
     }
+
 }
 
 export const createTask = (task) => {
-    return {
-        type: 'CREATE_TASK',
-        task
+    return async (dispatch) => {
+        try {
+            const createdTask = await taskService.create(task)
+            dispatch({
+                type: 'CREATE_TASK',
+                task: createdTask
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 
-export default taskReducer
+    export default taskReducer

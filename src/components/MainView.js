@@ -3,7 +3,7 @@ import Task from './Task'
 import { Segment, Message, Container, Divider } from 'semantic-ui-react'
 import Header from './Header'
 import CreateTask from './CreateTask'
-import DeleteTasklist from './DeleteTasklist'
+import EditTasklist from './EditTasklist'
 
 class MainView extends React.Component {
     render() {
@@ -17,7 +17,7 @@ class MainView extends React.Component {
                     {this.props.tasklists && this.props.tasklists.map(tasklist =>
                         <Container key={tasklist._id}>
                             <Segment key={tasklist._id} color={tasklist.color || 'grey'}>
-                                <h1>{tasklist.title}<CreateTask tasklist={tasklist._id} /><DeleteTasklist tasklist={tasklist._id} /></h1>
+                                <h1>{tasklist.title}<CreateTask tasklist={tasklist._id} /><EditTasklist tasklist={tasklist} /></h1>
                             </Segment>
                             {this.props.tasks.filter(x => x.tasklist === tasklist._id).map(item =>
                                 <Task

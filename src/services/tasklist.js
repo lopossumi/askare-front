@@ -35,9 +35,20 @@ const remove = async (id) => {
     }
 }
 
+const edit = async (tasklist) => {
+    try {
+        const id = tasklist._id
+        const response = await axios.put(url+`/${id}`, {...tasklist}, config())
+        return response.data
+    } catch (error) {
+        return error.response.data
+    }
+}
+
 export default { 
     getAll, 
     setToken,
     create,
-    remove
+    remove,
+    edit
 }

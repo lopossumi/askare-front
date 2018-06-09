@@ -1,4 +1,4 @@
-import { Container, Segment, Label } from 'semantic-ui-react'
+import { Container, Segment, Icon } from 'semantic-ui-react'
 import TaskDetails from './TaskDetails'
 import React from 'react'
 //import ReactMarkdown from 'react-markdown'
@@ -18,10 +18,8 @@ class Task extends React.Component {
     render() {
         return (
             <Container>
-                <Segment onClick={this.toggleDetails}>
-                    {this.props.task.color 
-                        ? <Label color={this.props.task.color || 'grey'} ribbon='right'/> 
-                        : <Label ribbon='right'/>}
+                <Segment color={this.props.task.color}>
+                <Icon size='large' onClick={this.toggleDetails} name={this.state.showDetails ? 'caret down' : 'caret right'} />
                     {this.props.task.title}
                     <TaskDetails task={this.props.task} show={this.state.showDetails}/>
                 </Segment>

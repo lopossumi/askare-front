@@ -9,6 +9,8 @@ const tasklistReducer = (store = [], action) => {
             return [...store, action.tasklist]
         case 'DELETE_TASKLIST':
             return store.filter(x => x._id !== action.id)
+        case 'EDIT_TASKLIST':
+            return store.map(x => x._id !== action.tasklist._id ? x : action.tasklist)
         case 'RECYCLE_TASKLIST':
             return store.map(x => (x._id !== action.id) ? x : { ...x, recycled: true })
         default:
@@ -19,6 +21,13 @@ const tasklistReducer = (store = [], action) => {
 export const createTasklist = (tasklist) => {
     return {
         type: 'CREATE_TASKLIST',
+        tasklist
+    }
+}
+
+export const editTasklist = (tasklist) => {
+    return {
+        type: 'EDIT_TASKLIST',
         tasklist
     }
 }

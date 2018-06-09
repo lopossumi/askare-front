@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Modal, Icon, Dropdown, Divider } from 'semantic-ui-react'
+import { Button, Form, Modal, Icon, Divider } from 'semantic-ui-react'
 import tasklistService from '../services/tasklist'
 import { createTasklist } from '../reducers/tasklistReducer'
 import { connect } from 'react-redux'
@@ -23,7 +23,7 @@ class CreateTasklist extends React.Component {
     }
 
     handleColor(event, {value}) { 
-        this.setState({ color: value })
+        this.setState({ [event.target.name]: value })
     }
 
     handleSubmit = async (event) => {

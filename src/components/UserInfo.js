@@ -28,7 +28,7 @@ class UserInfo extends React.Component {
                             <Table.Cell>
                                 <THeader>
                                     <THeader.Content>{user.firstname} {user.lastname}
-                                        <THeader.Subheader>@{user.username}</THeader.Subheader>
+                                        <THeader.Subheader>@{user.screenname}</THeader.Subheader>
                                     </THeader.Content>
                                 </THeader>
                             </Table.Cell>
