@@ -32,4 +32,5 @@
 | 7.6.2018  | 0.5h  | Deployment bugfixes and color picker
 | 8.6.2018  | 1.0h  | Identicons & new user account validation; back to Node 8
 | 8.6.2018  | 0.5h  | Fixed identicon bug; minor UI improvements
+| 8.6.2018  | 4.0h  | Heavy refactoring; moving tasks between lists; backend fixes etc
 
