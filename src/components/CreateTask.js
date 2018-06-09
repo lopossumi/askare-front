@@ -32,7 +32,8 @@ class CreateTask extends React.Component {
                 <Modal.Content>
                     <TaskEditForm
                         mode='create'
-                        handleClose={this.handleClose} />
+                        handleClose={this.handleClose}
+                        tasklist={this.props.tasklist}/>
                 </Modal.Content>
             </Modal>
         )

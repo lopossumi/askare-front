@@ -19,22 +19,29 @@ const tasklistReducer = (store = [], action) => {
 }
 
 export const createTasklist = (tasklist) => {
-    return {
-        type: 'CREATE_TASKLIST',
-        tasklist
+    return async (dispatch) => {
+        const myList = await tasklistService.create(tasklist)
+
+        dispatch({
+            type: 'CREATE_TASKLIST',
+            tasklist: myList
+        })
     }
 }
 
 export const editTasklist = (tasklist) => {
-    return {
-        type: 'EDIT_TASKLIST',
-        tasklist
+    return async (dispatch) => {
+        const myList = await tasklistService.edit(tasklist)
+
+        dispatch({
+            type: 'EDIT_TASKLIST',
+            tasklist: myList
+        })
     }
 }
 
 export const deleteTasklist = (id) => {
     return async (dispatch) => {
-        console.log('said delete to service')
         await tasklistService.remove(id)
 
         dispatch({
