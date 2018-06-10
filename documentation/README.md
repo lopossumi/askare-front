@@ -35,4 +35,5 @@
 | 8.6.2018  | 4.0h  | Heavy refactoring; moving tasks between lists; backend fixes etc
 | 10.6.2018 | 2.0h  | Editing account information
 | 10.6.2018 | 2.0h  | Deleting account
+| 10.6.2018 | 3.0h  | Major UI makeover
 
