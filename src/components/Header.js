@@ -3,6 +3,7 @@ import { Menu, Dropdown, Icon } from 'semantic-ui-react'
 import CreateTasklist from './CreateTasklist'
 import CreateTask from './CreateTask'
 import EditAccount from './EditAccount'
+import DeleteAccount from './DeleteAccount'
 import LogoutButton from './LogoutButton'
 import { Link } from 'react-router-dom'
 import Filter from './Filter'
@@ -37,7 +38,7 @@ class Header extends React.Component {
                             <Dropdown.Menu>
                                 <Dropdown.Item as={Link} to='/userinfo'>Info</Dropdown.Item>
                                 <Dropdown.Item><EditAccount user={this.props.user} mode='text' /></Dropdown.Item>
-                                <Dropdown.Item>Remove account</Dropdown.Item>
+                                <Dropdown.Item><DeleteAccount /></Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
 

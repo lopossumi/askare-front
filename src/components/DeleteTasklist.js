@@ -6,18 +6,16 @@ import { connect } from 'react-redux'
 class DeleteTasklist extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { tasklist: props.tasklist }
         this.handleDelete = this.handleDelete.bind(this)
+        this.handleRecycle = this.handleRecycle.bind(this)
     }
 
     handleDelete = async (event) => {
-        const id = this.state.tasklist
-        this.props.deleteTasklist(id)
+        this.props.deleteTasklist(this.props.id)
     }
 
     handleRecycle = async (event) => {
-        const id = this.state.tasklist
-        this.props.recycleTasklist(id)
+        this.props.recycleTasklist(this.props.id)
     }
 
     render() {

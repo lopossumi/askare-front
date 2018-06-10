@@ -21,11 +21,11 @@ class LoginView extends React.Component {
     }
 
     autofill(username, password) {
-        this.setState({ username, password })
+        this.setState({ username, password, errorMessage: '' })
     }
 
     handleInputChange(event) { 
-        this.setState({ [event.target.name]: event.target.value })
+        this.setState({ [event.target.name]: event.target.value, errorMessage: '' })
     }
     
     handleSubmit = async (event) => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Modal, Icon } from 'semantic-ui-react'
 import TasklistEditForm from './forms/TasklistEditForm'
-
+import DeleteTasklist from './DeleteTasklist'
 class EditTasklist extends React.Component {
     constructor(props) {
         super(props);
@@ -28,7 +28,7 @@ class EditTasklist extends React.Component {
                 open={this.state.modalOpen}
                 onClose={this.handleClose}>
 
-                <Modal.Header color='blue'><Icon name='plus' />Edit tasklist</Modal.Header>
+                <Modal.Header color='blue'><Icon name='plus' />Edit tasklist<DeleteTasklist id={this.props.tasklist._id}/></Modal.Header>
                 <Modal.Content>
                     <TasklistEditForm 
                         mode='edit'

@@ -32,7 +32,6 @@ class CreateAccount extends React.Component {
     }
 
     handleInputChange(event) { 
-        console.log(event.target.checked)
         this.setState({ [event.target.name]: event.target.value })
     }
 
