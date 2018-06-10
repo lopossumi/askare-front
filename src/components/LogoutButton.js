@@ -9,10 +9,9 @@ class LogoutButton extends React.Component {
     }
 
     render() {
-        return <Button animated color='black' onClick={this.handleLogout}>
-            <Button.Content hidden>Logout</Button.Content>
+        return <Button onClick={this.handleLogout}>
             <Button.Content visible>
-                <Icon name='sign out' />
+                <Icon name='sign out' />Logout
             </Button.Content>
 
         </Button>

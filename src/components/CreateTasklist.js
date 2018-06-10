@@ -6,6 +6,7 @@ class CreateTasklist extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            mode: props.mode,
             modalOpen: false
         }
         this.handleClose = this.handleClose.bind(this)
@@ -14,10 +15,11 @@ class CreateTasklist extends React.Component {
     handleOpen = () => this.setState({ modalOpen: true })
     handleClose = () => this.setState({ modalOpen: false })
 
+    // By default render as a button. If mode is set to text, just show a div of text.
     render() {
         return (
             <Modal
-                trigger={
+                trigger={ this.state.mode==='text' ? <div onClick={this.handleOpen}>New list</div> :
                     <Button
                         color='green'
                         icon='plus'

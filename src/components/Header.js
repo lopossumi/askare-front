@@ -1,44 +1,66 @@
 import React from 'react'
 import { Menu, Dropdown, Icon } from 'semantic-ui-react'
 import CreateTasklist from './CreateTasklist'
+import CreateTask from './CreateTask'
+import EditAccount from './EditAccount'
 import LogoutButton from './LogoutButton'
 import { Link } from 'react-router-dom'
 import Filter from './Filter'
+import { connect } from 'react-redux'
+
+class Header extends React.Component {
+
+    render() {
+        return (
+            <div>
+                <Menu stackable>
+                    <Menu.Item as={Link} to='/'>
+                        <Icon name='list' /> askare
+                    </Menu.Item>
+
+                    <Menu.Menu>
+                        <Dropdown item text='New...'>
+                            <Dropdown.Menu>
+                                <Dropdown.Item><CreateTasklist mode='text' /></Dropdown.Item>
+                                <Dropdown.Item><CreateTask mode='text' /></Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Menu.Menu>
+
+                    <Menu.Item>
+                        <Filter />
+                    </Menu.Item>
 
 
-const Header = () => (
-    <div>
-        <Menu stackable>
-            <Menu.Item as={Link} to='/'>
-                <Icon name='list' /> askare
-            </Menu.Item>
+                    <Menu.Menu position='right'>
+                        <Dropdown item text='My account'>
+                            <Dropdown.Menu>
+                                <Dropdown.Item as={Link} to='/userinfo'>Info</Dropdown.Item>
+                                <Dropdown.Item><EditAccount user={this.props.user} mode='text' /></Dropdown.Item>
+                                <Dropdown.Item>Remove account</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
 
-            <Menu.Item>
-                <CreateTasklist />
-            </Menu.Item>
+                        <Menu.Item>
+                            <LogoutButton />
+                        </Menu.Item>
+                    </Menu.Menu>
 
-            <Menu.Item>
-                <Filter />
-            </Menu.Item>
+                </Menu>
+                <br />
+            </div>
+        )
+    }
+}
 
 
-            <Menu.Menu position='right'>
-                <Dropdown item text='My account'>
-                    <Dropdown.Menu>
-                        <Dropdown.Item as={Link} to='/userinfo'>Info</Dropdown.Item>
-                        <Dropdown.Item>Edit details</Dropdown.Item>
-                        <Dropdown.Item>Remove account</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown>
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
 
-                <Menu.Item>
-                    <LogoutButton />
-                </Menu.Item>
-            </Menu.Menu>
-
-        </Menu>
-        <br/>
-    </div>
-)
-
-export default Header
+export default connect(
+    mapStateToProps,
+    null
+)(Header)

@@ -1,9 +1,19 @@
 import axios from 'axios'
-const url = '/api/register'
+const url = '/api/users'
 
-const register = async (user) => {
+let token = null
+
+const setToken = (newToken) => {
+    token = `bearer ${newToken}`
+}
+
+const config = () => {
+    return({ headers: { 'Authorization': token }})
+}
+
+const edit = async (user) => {
     try {
-        const response = await axios.post(url, user)
+        const response = await axios.put(url+`/${user._id}`, user, config())
         return response.data
     } catch (error) {
         // Either the server responded with a validation error, or cannot connect to server.
@@ -13,4 +23,7 @@ const register = async (user) => {
     }
 }
 
-export default { register }
+export default { 
+    setToken,
+    edit 
+}

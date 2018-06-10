@@ -12,7 +12,7 @@ class UserInfo extends React.Component {
               user = JSON.parse(loggedUserJSON)
             }
         }
-        const jdenticonSvg = jdenticon.toSvg(user.username, 100)
+        const jdenticonSvg = jdenticon.toSvg(user._id, 100)
 
         return (
             <div>

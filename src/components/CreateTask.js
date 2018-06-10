@@ -6,6 +6,7 @@ class CreateTask extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            mode: props.mode,
             modalOpen: false
         }
         this.handleClose = this.handleClose.bind(this)
@@ -17,7 +18,7 @@ class CreateTask extends React.Component {
     render() {
         return (
             <Modal
-                trigger={
+            trigger={ this.state.mode==='text' ? <div onClick={this.handleOpen}>New task</div> :
                     <Button size='mini' floated='right' animated color='green' onClick={this.handleOpen}>
                         <Button.Content hidden>New...</Button.Content>
                         <Button.Content visible>
