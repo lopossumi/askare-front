@@ -18,7 +18,7 @@ class EditTask extends React.Component {
         return (
             <Modal
                 trigger={
-                    <Button size='mini' animated color='blue' onClick={this.handleOpen}>
+                    <Button size='mini' animated color='grey' onClick={this.handleOpen}>
                         <Button.Content hidden>Edit...</Button.Content>
                         <Button.Content visible>
                             <Icon name='edit' />

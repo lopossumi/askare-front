@@ -1,4 +1,4 @@
-import { Divider, Transition } from 'semantic-ui-react'
+import { Divider, Transition, Button } from 'semantic-ui-react'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import RemoveTask from './RemoveTask'
@@ -20,8 +20,10 @@ class TaskDetails extends React.Component {
                 <Divider />
                 {/* <p>Priority: <PriorityIcon priority={task.priority} /></p>
                 <p>Status: {task.status}</p> */}
+                <Button.Group size='mini'>
                 <EditTask task={task} />
                 <RemoveTask taskId={task._id}/>
+                </Button.Group>
             </div>
             </Transition>
         )

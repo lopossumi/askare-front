@@ -1,5 +1,5 @@
 import React from 'react'
-import { Checkbox, Button, Form, Divider, TextArea, Message, Dropdown } from 'semantic-ui-react'
+import { Checkbox, Button, Form, Divider, Message } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { editUser, login } from '../../reducers/userReducer'
 import userService from '../../services/user'
@@ -33,11 +33,7 @@ class AccountEditForm extends React.Component {
                 currentPasswordError: false,
                 passwordError: false,
                 emailError: false,
-                errorMessage: '',
                 success: false,
-                showTerms: false,
-                accepted: false,
-                showInSearch: false
             }
         }
         this.clearErrors = this.clearErrors.bind(this)

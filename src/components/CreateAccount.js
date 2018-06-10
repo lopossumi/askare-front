@@ -187,26 +187,22 @@ class CreateAccount extends React.Component {
                             checked={this.state.showInSearch} />
                         <Divider />
 
-                        
-                        {this.state.accepted ? <Icon color='green' name='check circle' size='large'/> : <Icon name='circle outline' size='large'/> }
-                        
-                        <Button onClick={this.toggleTerms}>Terms of Use and Privacy Statement</Button>
+                        <Button color='blue' onClick={this.toggleTerms}>Terms of Use and Privacy Statement</Button>
+                        {this.state.accepted && <Icon color='green' name='check circle' size='large'/> }
                         
                         <Container>
                             <Divider hidden />
-                            <Segment hidden={!this.state.showTerms}>
+                            <Segment basic hidden={!this.state.showTerms}>
                                 <Terms /> 
                                 <Divider hidden />
-                                <Button onClick={this.acceptTerms} color='blue'>
+                                <Button fluid onClick={this.acceptTerms} color='blue'>
                                     I understand and accept.
                                 </Button>
-                                <Button onClick={this.declineTerms}>
+                                <Button fluid onClick={this.declineTerms}>
                                     I do not accept.
                                 </Button>
                             </Segment>
                         </Container>
-
-                        <Divider />
 
                         <Message color='red' hidden={this.state.errorMessage === ''}>
                             {this.state.errorMessage}
@@ -216,8 +212,7 @@ class CreateAccount extends React.Component {
                             New account "{this.state.username}" created!
                         </Message>
 
-
-                        <Button disabled={!this.state.accepted} type='submit' color='blue' onClick={this.handleSubmit}>Register</Button>
+                        <Button disabled={!this.state.accepted} type='submit' color='green' onClick={this.handleSubmit}>Register account</Button>
                         <Button onClick={this.handleClose}>Cancel</Button>
                     </Form>
                 </Modal.Content>

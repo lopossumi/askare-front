@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal, Icon, Segment, Container, Dropdown } from 'semantic-ui-react'
+import { Button, Modal, Icon } from 'semantic-ui-react'
 import AccountEditForm from './forms/AccountEditForm'
 
 class EditAccount extends React.Component {

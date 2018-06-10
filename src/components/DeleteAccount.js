@@ -30,7 +30,7 @@ class DeleteAccount extends React.Component {
         }        
         else {
             try {
-                const response = await this.props.deleteUser(this.props.user)
+                await this.props.deleteUser(this.props.user)
                 this.setState({ errorMessage: 'Account deleted! Logging out...' })
                 
             } catch (error) {

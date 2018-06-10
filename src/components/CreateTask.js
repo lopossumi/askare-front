@@ -19,11 +19,8 @@ class CreateTask extends React.Component {
         return (
             <Modal
             trigger={ this.state.mode==='text' ? <div onClick={this.handleOpen}>New task</div> :
-                    <Button size='mini' floated='right' animated color='green' onClick={this.handleOpen}>
-                        <Button.Content hidden>New...</Button.Content>
-                        <Button.Content visible>
+                    <Button icon size='mini' color='teal' onClick={this.handleOpen}>
                             <Icon name='plus' />
-                        </Button.Content>
                     </Button>
                 }
                 open={this.state.modalOpen}

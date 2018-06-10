@@ -18,11 +18,8 @@ class EditTasklist extends React.Component {
         return (
             <Modal
                 trigger={
-                    <Button floated='right' size='mini' animated color='blue' onClick={this.handleOpen}>
-                        <Button.Content hidden>Edit...</Button.Content>
-                        <Button.Content visible>
+                    <Button icon size='mini' color='grey' onClick={this.handleOpen}>
                             <Icon name='edit' />
-                        </Button.Content>
                     </Button>
                 }
                 open={this.state.modalOpen}

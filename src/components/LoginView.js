@@ -56,7 +56,7 @@ class LoginView extends React.Component {
             <Container>
                 <Segment raised padded>
                     <h1><Icon name='list' />askare</h1>
-                    <p>Revolutionizing to-do lists. Join today!</p>
+                    <p>Putting your tasks in order. Join now!</p>
                     <CreateAccount autofill={this.autofill} />
                 </Segment>
 
