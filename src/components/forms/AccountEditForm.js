@@ -1,5 +1,5 @@
 import React from 'react'
-import { Checkbox, Button, Form, Divider, Message } from 'semantic-ui-react'
+import { Button, Checkbox, Divider, Form, Message } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { editUser, login } from '../../reducers/userReducer'
 import userService from '../../services/user'
@@ -15,22 +15,18 @@ class AccountEditForm extends React.Component {
             }
         } else {
             this.state = {
+                // Fill all fields from props.user
+                ...props.user,
+
                 mode: 'edit',
                 errorMessage: '',
-
-                _id: props.user._id,
-                username: props.user.screenname,
-                firstname: props.user.firstname,
-                lastname: props.user.lastname,
-                email: props.user.email,
-                showInSearch: props.user.showInSearch,
                 currentpassword: '',
                 password1: '',
                 password2: '',
 
                 // Validation errors
-                usernameError: false,
                 currentPasswordError: false,
+                usernameError: false,
                 passwordError: false,
                 emailError: false,
                 success: false,
@@ -64,24 +60,33 @@ class AccountEditForm extends React.Component {
         event.preventDefault()
         this.clearErrors()
 
-        //region Validate form on client side before attempting to edit user.
+        //region Client side form validation
         let clientSideValidationOK = true
         const usernameRegex = /^[a-zA-Z0-9_-]+$/
         const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
         if (this.state.password1 !== this.state.password2) {
             clientSideValidationOK = false
-            this.setState({ passwordError: true, errorMessage: 'Passwords do not match.' })
+            this.setState({
+                passwordError: true,
+                errorMessage: 'Passwords do not match.'
+            })
         }
         if (!this.state.email.match(emailRegex)) {
             clientSideValidationOK = false
-            this.setState({ emailError: true, errorMessage: 'Invalid email. Please enter a valid email address.' })
+            this.setState({
+                emailError: true,
+                errorMessage: 'Invalid email. Please enter a valid email address.'
+            })
         }
         if (!this.state.username.match(usernameRegex)) {
             clientSideValidationOK = false
-            this.setState({ usernameError: true, errorMessage: 'Invalid username. Please use only english alphanumeric characters, hyphen and underscore.' })
+            this.setState({
+                usernameError: true,
+                errorMessage: 'Invalid username. Please use only english alphanumeric characters, hyphen and underscore.'
+            })
         }
-        //endregion
+        //endregion Client side form validation
 
         if (clientSideValidationOK) {
             const newUser = {
@@ -96,33 +101,27 @@ class AccountEditForm extends React.Component {
             }
 
             try {
-                console.log('am here')
                 userService.setToken(this.props.user.token)
-                console.log('am here 2')
                 const response = await userService.edit(newUser)
 
                 // Check server side validation errors
                 if (response.error) {
                     const invalidField = response.error.split(' ')[1]
                     switch (invalidField) {
-                        case 'username.':
-                            this.setState({ usernameError: true }); break
-                        case 'email.':
-                            this.setState({ emailError: true }); break
-                        case 'password.':
-                            this.setState({ currentPasswordError: true }); break
-                        case 'new':
-                            this.setState({ passwordError: true }); break
+                        case 'username.': this.setState({ usernameError: true }); break
+                        case 'email.': this.setState({ emailError: true }); break
+                        case 'password.': this.setState({ currentPasswordError: true }); break
+                        case 'new': this.setState({ passwordError: true }); break
                         default:
                             console.log(response.error)
                     }
                     this.setState({ errorMessage: response.error })
                 } else {
                     // Server side validation ok.
-                    this.setState({success: true})
+                    this.setState({ success: true })
                     console.log(response)
                     window.localStorage.setItem('loggedUser', JSON.stringify(response))
-                    this.props.login(response)          
+                    this.props.login(response)
 
                     setTimeout(() => {
                         this.props.handleClose()
@@ -133,9 +132,6 @@ class AccountEditForm extends React.Component {
                 console.log(error)
             }
         }
-
-
-        //this.props.handleClose()
     }
 
     render() {

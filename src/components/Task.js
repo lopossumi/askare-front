@@ -5,7 +5,9 @@ import React from 'react'
 class Task extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { showDetails: false }
+        this.state = { 
+            showDetails: false 
+        }
     }
 
     toggleDetails = () => {
@@ -14,9 +16,22 @@ class Task extends React.Component {
 
     render() {
         return (
-                <Segment attached color={this.props.task.color}>
-                <Icon size='large' onClick={this.toggleDetails} name={this.state.showDetails ? 'caret down' : 'caret right'} /><span onClick={this.toggleDetails}>{this.props.task.title}</span>
-                    <TaskDetails task={this.props.task} show={this.state.showDetails}/>
+                <Segment 
+                    attached 
+                    color={this.props.task.color}>
+                    <Icon 
+                        size='large' 
+                        onClick={this.toggleDetails} 
+                        name={this.state.showDetails ? 'caret down' : 'caret right'} 
+                    />
+                    <span 
+                        onClick={this.toggleDetails}>
+                        {this.props.task.title}
+                    </span>
+                    <TaskDetails 
+                        task={this.props.task} 
+                        show={this.state.showDetails}
+                    />
                 </Segment>
         )
     }

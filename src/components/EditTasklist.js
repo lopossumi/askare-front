@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal, Icon } from 'semantic-ui-react'
+import { Button, Modal, Icon, Popup } from 'semantic-ui-react'
 import TasklistEditForm from './forms/TasklistEditForm'
 import DeleteTasklist from './DeleteTasklist'
 class EditTasklist extends React.Component {
@@ -17,15 +17,30 @@ class EditTasklist extends React.Component {
     render() {
         return (
             <Modal
-                trigger={
-                    <Button icon size='mini' color='grey' onClick={this.handleOpen}>
-                            <Icon name='edit' />
-                    </Button>
-                }
                 open={this.state.modalOpen}
-                onClose={this.handleClose}>
+                onClose={this.handleClose}
+                trigger={
+                    <Popup 
+                        position='right center'
+                        content='Edit tasklist'
+                        trigger={
+                            <Button 
+                                icon 
+                                size='mini' 
+                                color='grey' 
+                                onClick={this.handleOpen}>
+                                    <Icon name='edit' />
+                            </Button>
+                        } 
+                    />
+                }>
 
-                <Modal.Header color='blue'><Icon name='plus' />Edit tasklist<DeleteTasklist id={this.props.tasklist._id}/></Modal.Header>
+                <Modal.Header color='blue'>
+                    <Icon name='plus'/>
+                    Edit tasklist 
+                    <DeleteTasklist id={this.props.tasklist._id}/>
+                </Modal.Header>
+                
                 <Modal.Content>
                     <TasklistEditForm 
                         mode='edit'

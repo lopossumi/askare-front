@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal, Icon } from 'semantic-ui-react'
+import { Button, Modal, Icon, Popup } from 'semantic-ui-react'
 import TaskEditForm from './forms/TaskEditForm'
 
 class CreateTask extends React.Component {
@@ -18,15 +18,30 @@ class CreateTask extends React.Component {
     render() {
         return (
             <Modal
-            trigger={ this.state.mode==='text' ? <div onClick={this.handleOpen}>New task</div> :
-                    <Button icon size='mini' color='teal' onClick={this.handleOpen}>
-                            <Icon name='plus' />
-                    </Button>
-                }
                 open={this.state.modalOpen}
-                onClose={this.handleClose}>
-
-                <Modal.Header color='blue'><Icon name='plus' />Create a new task</Modal.Header>
+                onClose={this.handleClose}
+                trigger={ 
+                    this.state.mode==='text' ? 
+                        <div onClick={this.handleOpen}>New task</div> :
+                        <Popup
+                            position='right center'
+                            content='Create task'     
+                            trigger={
+                                <Button 
+                                    icon 
+                                    size='mini'
+                                    color='teal'
+                                    onClick={this.handleOpen}>    
+                                    <Icon name='plus' />
+                                </Button>
+                            }
+                        />
+                }>
+                
+                <Modal.Header color='blue'>
+                    <Icon name='plus' />Create a new task
+                </Modal.Header>
+                
                 <Modal.Content>
                     <TaskEditForm
                         mode='create'

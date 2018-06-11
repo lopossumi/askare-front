@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import Filter from './Filter'
 import { connect } from 'react-redux'
 
-class Header extends React.Component {
+class Navbar extends React.Component {
 
     render() {
         return (
@@ -19,6 +19,10 @@ class Header extends React.Component {
                         <Icon name='list' /> askare
                     </Menu.Item>
 
+                    <Menu.Item>
+                        <Filter />
+                    </Menu.Item>
+                    
                     <Menu.Menu>
                         <Dropdown item text='New...'>
                             <Dropdown.Menu>
@@ -27,11 +31,6 @@ class Header extends React.Component {
                             </Dropdown.Menu>
                         </Dropdown>
                     </Menu.Menu>
-
-                    <Menu.Item>
-                        <Filter />
-                    </Menu.Item>
-
 
                     <Menu.Menu position='right'>
                         <Dropdown item text='My account'>
@@ -64,4 +63,4 @@ const mapStateToProps = (state) => {
 export default connect(
     mapStateToProps,
     null
-)(Header)
+)(Navbar)

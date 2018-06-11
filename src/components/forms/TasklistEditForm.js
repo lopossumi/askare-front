@@ -18,12 +18,10 @@ class TasklistEditForm extends React.Component {
             }
         } else {
             this.state = {
+                // Fill all fields from props.tasklist
+                ...props.tasklist,
                 mode: 'edit',
                 errorMessage: '',
-
-                _id: props.tasklist._id,
-                title: props.tasklist.title,
-                color: props.tasklist.color,
             }
         }
         this.handleInputChange = this.handleInputChange.bind(this)
@@ -36,7 +34,6 @@ class TasklistEditForm extends React.Component {
     }
 
     handleColor(event, { value }) {
-        console.log('handle color')
         this.setState({ [event.target.name]: value })
     }
 
@@ -88,12 +85,23 @@ class TasklistEditForm extends React.Component {
 
             <Divider />
 
-            <Message color='red' hidden={this.state.errorMessage === ''}>
+            <Message 
+                color='red' 
+                hidden={this.state.errorMessage === ''}>
                 {this.state.errorMessage}
             </Message>
 
-            <Button type='submit' color='blue' onClick={this.handleSubmit}>Save</Button>
-            <Button onClick={this.props.handleClose}>Cancel</Button>
+            <Button 
+                type='submit' 
+                color='blue' 
+                onClick={this.handleSubmit}>
+                Save
+            </Button>
+            <Button 
+                onClick={this.props.handleClose}>
+                Cancel
+            </Button>
+            
         </Form>
         )
     }

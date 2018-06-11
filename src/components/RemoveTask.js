@@ -25,13 +25,20 @@ class RemoveTask extends React.Component {
     }
 
     render() {
-        return <Button negative size='mini' animated onClick={this.handleDelete}>
-            <Button.Content hidden>Delete</Button.Content>
-            <Button.Content visible>
-                <Icon name='delete' />
-            </Button.Content>
-        </Button>
-
+        return (
+            <Button 
+                animated 
+                color='red'
+                size='mini' 
+                onClick={this.handleDelete}>
+                <Button.Content hidden>
+                    Delete
+                </Button.Content>
+                <Button.Content visible>
+                    <Icon name='delete' />
+                </Button.Content>
+            </Button>
+        )
     }
 }
 

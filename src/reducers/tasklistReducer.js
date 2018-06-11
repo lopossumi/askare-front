@@ -1,5 +1,6 @@
 import tasklistService from '../services/tasklist'
 import taskService from '../services/task'
+import task from '../services/task';
 
 const tasklistReducer = (store = [], action) => {
     switch (action.type) {
@@ -10,7 +11,9 @@ const tasklistReducer = (store = [], action) => {
         case 'DELETE_TASKLIST':
             return store.filter(x => x._id !== action.id)
         case 'EDIT_TASKLIST':
-            return store.map(x => x._id !== action.tasklist._id ? x : action.tasklist)
+            return store.map(x => x._id !== action.tasklist._id 
+                ? x 
+                : action.tasklist)
         case 'RECYCLE_TASKLIST':
             return store.map(x => (x._id !== action.id) ? x : { ...x, recycled: true })
         default:
@@ -31,12 +34,20 @@ export const createTasklist = (tasklist) => {
 
 export const editTasklist = (tasklist) => {
     return async (dispatch) => {
-        const myList = await tasklistService.edit(tasklist)
-
-        dispatch({
-            type: 'EDIT_TASKLIST',
-            tasklist: myList
-        })
+        try{
+            // Could dispatch first with unvalidated data to seem more responsive?
+            // dispatch({
+            //     type: 'EDIT_TASKLIST',
+            //     tasklist: tasklist
+            // })
+            const myList = await tasklistService.edit(tasklist)
+            dispatch({
+                type: 'EDIT_TASKLIST',
+                tasklist: myList
+            })
+        } catch (error) {
+            console.log(error.response.data)
+        }
     }
 }
 

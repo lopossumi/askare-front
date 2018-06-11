@@ -36,4 +36,5 @@
 | 10.6.2018 | 2.0h  | Editing account information
 | 10.6.2018 | 2.0h  | Deleting account
 | 10.6.2018 | 3.0h  | Major UI makeover
+| 11.6.2018 | 2.0h  | Refactoring
 

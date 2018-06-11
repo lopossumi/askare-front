@@ -18,8 +18,14 @@ class EditTask extends React.Component {
         return (
             <Modal
                 trigger={
-                    <Button size='mini' animated color='grey' onClick={this.handleOpen}>
-                        <Button.Content hidden>Edit...</Button.Content>
+                    <Button
+                        animated
+                        size='mini'
+                        color='grey'
+                        onClick={this.handleOpen}>
+                        <Button.Content hidden>
+                            Edit...
+                        </Button.Content>
                         <Button.Content visible>
                             <Icon name='edit' />
                         </Button.Content>
@@ -28,12 +34,17 @@ class EditTask extends React.Component {
                 open={this.state.modalOpen}
                 onClose={this.handleClose}>
 
-                <Modal.Header color='blue'><Icon name='plus' />Edit task</Modal.Header>
+                <Modal.Header
+                    color='blue'>
+                    <Icon name='plus' />
+                    Edit task
+                </Modal.Header>
+
                 <Modal.Content>
-                    <TaskEditForm 
+                    <TaskEditForm
                         mode='edit'
                         task={this.props.task}
-                        handleClose={this.handleClose}/>
+                        handleClose={this.handleClose} />
                 </Modal.Content>
             </Modal>
         )

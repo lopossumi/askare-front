@@ -1,11 +1,13 @@
 import React from 'react'
-import { Icon, Divider } from 'semantic-ui-react'
+import { Container, Icon, Divider } from 'semantic-ui-react'
 
 const Footer = () => (
-    <div>
+    <Container>
         <Divider />
-        <Icon name='list' />askare &copy; Mikko Loponen 2018. < a href='https://github.com/lopossumi/askareact' > View source <Icon name='github' />GitHub.</a >
-    </div>
+        <Icon name='list' />askare &copy; Mikko Loponen 2018.&nbsp;
+        <a href='https://github.com/lopossumi/askareact'>View source <Icon name='github' />GitHub.</a>
+        <Divider />
+    </Container>
 )
 
 export default Footer

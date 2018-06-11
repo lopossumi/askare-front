@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal, Icon, Input, Divider, Message } from 'semantic-ui-react'
+import { Button, Divider, Icon, Input, Message, Modal } from 'semantic-ui-react'
 import { deleteUser } from '../reducers/userReducer'
 import { connect } from 'react-redux'
 
@@ -25,16 +25,16 @@ class DeleteAccount extends React.Component {
         console.log(this.state.username)
         console.log(this.props.user.username)
 
-        if (this.state.username.toLowerCase() !== this.props.user.username){
-            this.setState({errorMessage: 'This is not your username.'})
-        }        
+        if (this.state.username.toLowerCase() !== this.props.user.username) {
+            this.setState({ errorMessage: 'This is not your username.' })
+        }
         else {
             try {
                 await this.props.deleteUser(this.props.user)
                 this.setState({ errorMessage: 'Account deleted! Logging out...' })
-                
+
             } catch (error) {
-                this.setState({errorMessage: 'Server error. Could not delete account.'})
+                this.setState({ errorMessage: 'Server error. Could not delete account.' })
                 console.log(error)
             }
         }
@@ -58,23 +58,32 @@ class DeleteAccount extends React.Component {
                     <h3>This operation cannot be undone. All your tasks and lists are deleted along with your user information.</h3>
                     <p>To really delete your account, type your current password into the field below.</p>
                     <Input
-                    error={!!this.state.errorMessage}
-                    label='Username'
-                    type='username'
-                    placeholder='Type your username'
-                    name='username'
-                    onChange={this.handleInputChange}
-                    value={this.state.username} />
-                    
+                        error={!!this.state.errorMessage}
+                        label='Username'
+                        type='username'
+                        placeholder='Type your username'
+                        name='username'
+                        onChange={this.handleInputChange}
+                        value={this.state.username} />
+
                     <Divider />
-                    
-                    <Message color='red' hidden={this.state.errorMessage === ''}>
+
+                    <Message 
+                        color='red' 
+                        hidden={this.state.errorMessage === ''}>
                         {this.state.errorMessage}
                     </Message>
 
-
-                    <Button negative onClick={this.handleDelete}>Delete account</Button>
-                    <Button onClick={this.handleClose}>Cancel</Button>
+                    <Button 
+                        color='red' 
+                        onClick={this.handleDelete}>
+                        Delete account
+                    </Button>
+                    <Button 
+                        onClick={this.handleClose}>
+                        Cancel
+                    </Button>
+                
                 </Modal.Content>
             </Modal>
         )

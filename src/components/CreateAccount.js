@@ -128,12 +128,17 @@ class CreateAccount extends React.Component {
                 open={this.state.modalOpen}
                 onClose={this.handleClose}>
 
-                <Modal.Header color='blue'><Icon name='user' />Create a new account</Modal.Header>
+                <Modal.Header 
+                    color='blue'>
+                    <Icon name='user' />
+                    Create a new account
+                </Modal.Header>
+                
                 <Modal.Content>
                     <Form>
                         <Form.Input
                             error={this.state.usernameError}
-                            label='Username'
+                            label='Username*'
                             placeholder='Pick a username'
                             name='username'
                             onChange={this.handleInputChange}
@@ -156,7 +161,7 @@ class CreateAccount extends React.Component {
 
                         <Form.Input
                             error={this.state.emailError}
-                            label='E-mail'
+                            label='E-mail*'
                             type='email'
                             placeholder='you@example.com'
                             name='email'
@@ -187,7 +192,7 @@ class CreateAccount extends React.Component {
                             checked={this.state.showInSearch} />
                         <Divider />
 
-                        <Button color='blue' onClick={this.toggleTerms}>Terms of Use and Privacy Statement</Button>
+                        <Button color='blue' onClick={this.toggleTerms}>Terms of Use and Privacy Statement*</Button>
                         {this.state.accepted && <Icon color='green' name='check circle' size='large'/> }
                         
                         <Container>

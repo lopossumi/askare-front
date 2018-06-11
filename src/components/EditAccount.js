@@ -18,23 +18,31 @@ class EditAccount extends React.Component {
     render() {
         return (
             <Modal
-                trigger={ this.state.mode==='text' ? <div onClick={this.handleOpen}>Edit details</div> :
-                    <Button size='mini' animated color='blue' onClick={this.handleOpen}>
-                        <Button.Content hidden>Edit...</Button.Content>
-                        <Button.Content visible>
-                            <Icon name='edit' />
-                        </Button.Content>
-                    </Button>
+                trigger={
+                    this.state.mode === 'text' ?
+
+                        <div onClick={this.handleOpen}>Edit details</div> :
+
+                        <Button
+                            animated
+                            size='mini'
+                            color='blue'
+                            onClick={this.handleOpen}>
+                            <Button.Content hidden>Edit...</Button.Content>
+                            <Button.Content visible>
+                                <Icon name='edit' />
+                            </Button.Content>
+                        </Button>
                 }
                 open={this.state.modalOpen}
                 onClose={this.handleClose}>
 
                 <Modal.Header color='blue'>Edit account information</Modal.Header>
                 <Modal.Content>
-                    <AccountEditForm 
+                    <AccountEditForm
                         mode='edit'
                         user={this.props.user}
-                        handleClose={this.handleClose}/>
+                        handleClose={this.handleClose} />
                 </Modal.Content>
             </Modal>
         )

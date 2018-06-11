@@ -22,16 +22,11 @@ class TaskEditForm extends React.Component {
             }
         } else {
             this.state = {
+                // Fill all fields from props.task
+                ...props.task,
+
                 mode: 'edit',
                 errorMessage: '',
-
-                _id: props.task._id,
-                title: props.task.title,
-                tasklist: props.task.tasklist,
-                content: props.task.content,
-                priority: props.task.priority,
-                status: props.task.status,
-                color: props.task.color,
             }
         }
         this.handleInputChange = this.handleInputChange.bind(this)
