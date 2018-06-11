@@ -1,6 +1,5 @@
 import tasklistService from '../services/tasklist'
 import taskService from '../services/task'
-import task from '../services/task';
 
 const tasklistReducer = (store = [], action) => {
     switch (action.type) {
