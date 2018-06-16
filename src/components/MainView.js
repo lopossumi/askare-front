@@ -4,6 +4,7 @@ import { Segment, Message, Container, Divider, Button, Grid } from 'semantic-ui-
 import Navbar from './Navbar'
 import CreateTask from './CreateTask'
 import EditTasklist from './EditTasklist'
+import { connect } from 'react-redux'
 
 class MainView extends React.Component {
     render() {
@@ -38,9 +39,14 @@ class MainView extends React.Component {
                             </Segment>
 
                             {/* If there are tasks in the list, map them into a segment group within list borders. */}
-                            {(this.props.tasks.filter(x => x.tasklist === tasklist._id).length !== 0) && 
+                                        {(this.props.tasks
+                                            .filter(x => x.content.toLowerCase().indexOf(this.props.search.toString().toLowerCase()) !== -1)
+                                            .filter(x => x.tasklist === tasklist._id).length !== 0) &&
                                 <Segment.Group>
-                                    {this.props.tasks.filter(x => x.tasklist === tasklist._id).map(item =>
+                                                {this.props.tasks
+                                                    .filter(x => x.tasklist === tasklist._id)
+                                                    .filter(x => x.content.toLowerCase().indexOf(this.props.search.toString().toLowerCase()) !== -1)
+                                                    .map(item =>
                                         <Task
                                             key={item._id}
                                             task={item} 
