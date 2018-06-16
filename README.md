@@ -14,5 +14,6 @@ Askare is built with MERN stack: (or MMERSRN, if you want more letters included)
 ## Features to be implemented before 1.0 release
 * Done! *Searching tasks by content*
 * Task status and priority
+* Searching and friending other users
 * Sharing tasks between users
 * Kanban-style UI option
