@@ -12,7 +12,7 @@ Askare is built with MERN stack: (or MMERSRN, if you want more letters included)
 * [Node.js](https://nodejs.org/) for backend
 
 ## Features to be implemented before 1.0 release
-* Searching tasks by content
+* Done! *Searching tasks by content*
 * Task status and priority
 * Sharing tasks between users
 * Kanban-style UI option
