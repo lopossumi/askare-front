@@ -119,12 +119,22 @@ class TaskEditForm extends React.Component {
 
                 <Divider />
 
-                <Message color='red' hidden={this.state.errorMessage === ''}>
+                <Message 
+                    color='red' 
+                    hidden={this.state.errorMessage === ''}>
                     {this.state.errorMessage}
                 </Message>
 
-                <Button type='submit' color='blue' onClick={this.handleSubmit}>Save</Button>
-                <Button onClick={this.props.handleClose}>Cancel</Button>
+                <Button 
+                    type='submit' 
+                    color='blue' 
+                    onClick={this.handleSubmit}>
+                    Save
+                </Button>
+                <Button 
+                    onClick={this.props.handleClose}>
+                    Cancel
+                </Button>
             </Form>
         )
     }

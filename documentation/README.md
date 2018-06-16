@@ -37,4 +37,5 @@
 | 10.6.2018 | 2.0h  | Deleting account
 | 10.6.2018 | 3.0h  | Major UI makeover
 | 11.6.2018 | 2.0h  | Refactoring
+| 16.6.2018 | 2.0h  | Bad UI idea testing; search feature implemented
 

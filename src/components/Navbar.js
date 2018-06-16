@@ -1,15 +1,25 @@
 import React from 'react'
-import { Menu, Dropdown, Icon } from 'semantic-ui-react'
+import { Menu, Dropdown, Icon, Input } from 'semantic-ui-react'
 import CreateTasklist from './CreateTasklist'
 import CreateTask from './CreateTask'
 import EditAccount from './EditAccount'
 import DeleteAccount from './DeleteAccount'
 import LogoutButton from './LogoutButton'
 import { Link } from 'react-router-dom'
-import Filter from './Filter'
 import { connect } from 'react-redux'
+import { setSearch } from '../reducers/searchReducer'
 
 class Navbar extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.handleSearch = this.handleSearch.bind(this)
+    }
+
+    handleSearch(event) {
+        console.log('event fired', event.target.value)
+        this.props.setSearch(event.target.value)
+    }
 
     render() {
         return (
@@ -20,7 +30,10 @@ class Navbar extends React.Component {
                     </Menu.Item>
 
                     <Menu.Item>
-                        <Filter />
+                        <Input 
+                            icon='search' 
+                            placeholder='Search...' 
+                            onChange={this.handleSearch}/>
                     </Menu.Item>
                     
                     <Menu.Menu>
@@ -56,11 +69,12 @@ class Navbar extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        search: state.search
     }
 }
 
 export default connect(
     mapStateToProps,
-    null
+    { setSearch }
 )(Navbar)

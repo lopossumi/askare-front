@@ -18,21 +18,13 @@ const getAll = () => {
 }
 
 const create = async (tasklist) => {
-    try {
         const response = await axios.post(url, {...tasklist}, config())
         return response.data
-    } catch (error) {
-        return error.response.data
-    }
 }
 
 const remove = async (id) => {
-    try {
         const response = await axios.delete(url+`/${id}`, config())
         return response.data
-    } catch (error) {
-        return error.response.data
-    }
 }
 
 const edit = async (tasklist) => {
@@ -41,10 +33,15 @@ const edit = async (tasklist) => {
         return response.data
 }
 
+const recycle = async (tasklist) => {
+    throw new Error('Recycle not implemented.')
+}
+
 export default { 
     getAll, 
     setToken,
     create,
     remove,
+    recycle,
     edit
 }

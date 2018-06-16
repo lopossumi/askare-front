@@ -10,8 +10,8 @@ const tasklistReducer = (store = [], action) => {
         case 'DELETE_TASKLIST':
             return store.filter(x => x._id !== action.id)
         case 'EDIT_TASKLIST':
-            return store.map(x => x._id !== action.tasklist._id 
-                ? x 
+            return store.map(x => x._id !== action.tasklist._id
+                ? x
                 : action.tasklist)
         case 'RECYCLE_TASKLIST':
             return store.map(x => (x._id !== action.id) ? x : { ...x, recycled: true })
@@ -22,23 +22,24 @@ const tasklistReducer = (store = [], action) => {
 
 export const createTasklist = (tasklist) => {
     return async (dispatch) => {
-        const myList = await tasklistService.create(tasklist)
-
-        dispatch({
-            type: 'CREATE_TASKLIST',
-            tasklist: myList
-        })
+        try {
+            const myList = await tasklistService.create(tasklist)
+            dispatch({
+                type: 'CREATE_TASKLIST',
+                tasklist: myList
+            })
+        } catch (error) {
+            console.log(error.response.data)
+        }
     }
 }
 
 export const editTasklist = (tasklist) => {
     return async (dispatch) => {
-        try{
+        try {
             // Could dispatch first with unvalidated data to seem more responsive?
-            // dispatch({
-            //     type: 'EDIT_TASKLIST',
-            //     tasklist: tasklist
-            // })
+            // Must be able to alert user if saving changes fails for some reason.
+
             const myList = await tasklistService.edit(tasklist)
             dispatch({
                 type: 'EDIT_TASKLIST',
@@ -52,12 +53,15 @@ export const editTasklist = (tasklist) => {
 
 export const deleteTasklist = (id) => {
     return async (dispatch) => {
-        await tasklistService.remove(id)
-
-        dispatch({
-            type: 'DELETE_TASKLIST',
-            id
-        })
+        try {
+            await tasklistService.remove(id)
+            dispatch({
+                type: 'DELETE_TASKLIST',
+                id
+            })
+        } catch (error) {
+            console.log(error.response.data)
+        }
     }
 }
 
@@ -68,20 +72,23 @@ export const recycleTasklist = (id) => {
     }
 }
 
-
 export const initialize = (user) => {
     return async (dispatch) => {
         tasklistService.setToken(user.token)
         taskService.setToken(user.token)
 
-        const tasklists = await tasklistService.getAll()
-        const tasks = await taskService.getAll()
+        try {
+            const tasklists = await tasklistService.getAll()
+            const tasks = await taskService.getAll()
 
-        dispatch({
-            type: 'INIT',
-            tasklists,
-            tasks
-        })
+            dispatch({
+                type: 'INIT',
+                tasklists,
+                tasks
+            })
+        } catch (error) {
+            console.log(error.response.data)
+        }
     }
 }
 
